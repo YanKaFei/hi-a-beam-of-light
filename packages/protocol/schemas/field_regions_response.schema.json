@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "DensityBand": {
+      "description": "Coarse density band. Deliberately discrete so an abused endpoint cannot\nreconstruct a real distribution.",
+      "enum": [
+        "none",
+        "low",
+        "mid",
+        "high"
+      ],
+      "type": "string"
+    },
+    "RegionEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "active_nodes": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "density_band": {
+          "$ref": "#/$defs/DensityBand"
+        },
+        "name": {
+          "type": "string"
+        },
+        "new_activations": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "suppressed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "active_nodes",
+        "new_activations",
+        "density_band",
+        "suppressed"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "k_threshold": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "level": {
+      "type": "string"
+    },
+    "regions": {
+      "items": {
+        "$ref": "#/$defs/RegionEntry"
+      },
+      "type": "array"
+    },
+    "window_end_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "window_start_ms": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "level",
+    "window_start_ms",
+    "window_end_ms",
+    "k_threshold",
+    "regions"
+  ],
+  "title": "FieldRegionsResponse",
+  "type": "object"
+}

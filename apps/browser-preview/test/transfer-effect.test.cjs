@@ -1,0 +1,3 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const effect=require('../transfer-effect.js');
+test('flight geometry is finite at narrow and wide sizes, with reduced motion',()=>{const numeric=new Set(['clearRect','moveTo','lineTo','quadraticCurveTo','arc']);const c=new Proxy({}, {get:(_,k)=>k==='createRadialGradient'? (...a)=>{assert.ok(a.every(Number.isFinite));return {addColorStop:(x)=>assert.ok(x>=0&&x<=1)}}:(...a)=>{if(numeric.has(k))assert.ok(a.every(Number.isFinite))},set:()=>true});for(const w of [300,390,1200])for(const reduce of [true,false])for(let t=0;t<=3600;t+=100)effect.draw(c,w,812,t,reduce)});

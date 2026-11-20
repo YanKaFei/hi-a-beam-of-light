@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/mine/mine",
+    "pages/transfer/transfer",
+    "pages/echo/echo",
+    "pages/paths/paths",
+    "pages/pair/pair",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarTitleText": "第一束光",
+    "navigationBarBackgroundColor": "#F6F7F4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6F7F4",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

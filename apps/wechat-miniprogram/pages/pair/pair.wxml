@@ -1,0 +1,50 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <view class="masthead">
+    <view class="home-left"><text class="nav home-nav" bindtap="goHome">← 我的光</text>
+    <text class="wordmark">连接插件</text></view>
+    <text class="nav" bindtap="back">返回</text>
+  </view>
+
+  <text class="overline">建立连接</text>
+  <view class="display">三步，<view style="display:inline;color:var(--terracotta)">把光接上</view></view>
+
+  <view class="steps">
+    <view class="step {{step > 1 ? '' : 'pending'}}">
+      <text class="n">01</text>
+      <text class="t">在电脑上运行 <text style="font-family:Menlo,monospace">fl-ollama-proxy pair</text>，得到 8 位配对码</text>
+    </view>
+    <view class="step {{step > 2 ? '' : 'pending'}}">
+      <text class="n">02</text>
+      <text class="t">在下方输入配对码，核对两端指纹是否一致</text>
+    </view>
+    <view class="step {{phase === 'ACTIVE' ? '' : 'pending'}}">
+      <text class="n">03</text>
+      <text class="t">电脑端签名确认，设备变为已连接</text>
+    </view>
+  </view>
+
+  <view class="hr"></view>
+
+  <input class="code-input" value="{{code}}" bindinput="onInput" placeholder="ABCDEFGH"
+         maxlength="9" disabled="{{pending || phase === 'APPROVED' || phase === 'ACTIVE'}}" />
+
+  <view wx:if="{{phase === 'APPROVED'}}" style="margin-top:28rpx">
+    <text class="overline">设备指纹</text>
+    <view class="fingerprint">{{fingerprint}}</view>
+    <view class="note" style="margin-top:12rpx">等待电脑完成确认。两端显示应完全一致。</view>
+  </view>
+
+  <view wx:if="{{phase === 'ACTIVE'}}" style="margin-top:28rpx">
+    <view class="ok">{{msg}}</view>
+    <view class="note" style="margin-top:10rpx">连接只是建立关系，不代表已经观察到模型使用。</view>
+  </view>
+
+  <view wx:if="{{err}}" class="warn" style="margin-top:24rpx">{{err}}</view>
+
+  <view style="margin-top:40rpx" wx:if="{{phase !== 'ACTIVE'}}">
+    <view class="action block" bindtap="confirm">{{pending ? '确认中…' : (phase === 'APPROVED' ? '等待电脑确认' : '确认配对')}}</view>
+  </view>
+  <view style="margin-top:40rpx" wx:else>
+    <view class="action block quiet" bindtap="back">回到我的光</view>
+  </view>
+</view>

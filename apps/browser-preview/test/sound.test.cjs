@@ -1,0 +1,5 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const {createSound}=require('../sound.js');
+function setup(reject=false){const tracks=[];const s=createSound({makeAudio:()=>{const t={paused:true,currentTime:0,addEventListener(){},removeEventListener(){},pause(){this.paused=true},async play(){if(reject)throw Error('denied');this.paused=false}};tracks.push(t);return t}});return {s,tracks}}
+test('audio starts only after opt-in and moves from opening to loop',async()=>{const {s,tracks}=setup();s.startIntro();assert.ok(tracks.every(t=>t.paused));await s.enable(true);assert.equal(s.playingIntro,true);await s.finishIntro();assert.equal(tracks[0].paused,true);assert.equal(tracks[1].paused,false);assert.equal(tracks[1].loop,true);s.suspend();assert.equal(tracks[1].paused,true);await s.resume();assert.equal(tracks[1].paused,false);s.disable();assert.ok(tracks.every(t=>t.paused));assert.equal(s.enabled,false)});
+test('rejected playback restores a silent usable state',async()=>{const {s,tracks}=setup(true);assert.equal(await s.enable(true),false);assert.equal(s.enabled,false);assert.ok(tracks.every(t=>t.paused))});

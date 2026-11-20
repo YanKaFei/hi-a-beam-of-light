@@ -1,0 +1,10 @@
+{
+  "name": "@firstlight/ollama-proxy",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Local loopback proxy that observes completed Ollama calls and signs minimal usage credentials.",
+  "type": "module",
+  "bin": { "fl-ollama-proxy": "./src/cli.mjs" },
+  "scripts": { "test": "node --test test/*.test.mjs", "start": "node src/cli.mjs" },
+  "engines": { "node": ">=20" }
+}

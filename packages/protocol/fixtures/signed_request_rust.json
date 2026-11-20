@@ -1,0 +1,20 @@
+{
+  "anon_id": "fl1_aafe0f8f3b3d41f95ff9275764982280",
+  "cert": {
+    "epoch": 1,
+    "epoch_pubkey_hex": "8cc63b0d0a1dacf0940dde8d4a6dbe7b11583a929e9be622e00728fd14420d66",
+    "root_pubkey_hex": "0d7550754e0800a5d237eef5826035766b9b3e5a15868a940ab289958788e3b0",
+    "signature_hex": "644c3b2fe7a3459487f480775cf330dae4acac203f1ec834eea962034f0cd657b60ec39f5e8cdee4312c1f0cc62482df29cbc4e13f2f7e834e6cf0d1fc475a07"
+  },
+  "epoch": 1,
+  "note": "Produced by crates/light-core (Rust). The TypeScript server must verify this signature, which proves the two implementations agree on key derivation and canonicalisation.",
+  "request": {
+    "body": "{\"channel\":\"QR\"}",
+    "body_sha256_hex": "48ac5ed7a91fec11c8aae9303db172e7ec90bdfa0f0d86e514861bff80645f01",
+    "method": "POST",
+    "nonce": "rustfixture-nonce-0001",
+    "path": "/v1/transmissions",
+    "timestamp": 1761868800000
+  },
+  "signature_hex": "6ed84050b68cf57852b952a3c318b09719013b64fc04516770c16be9bb20f05098f3b901f3b8a39f6203e12fe0dd3efec4e5137b9335b7df40485f4331218d01"
+}

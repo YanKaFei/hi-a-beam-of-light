@@ -1,0 +1,120 @@
+{
+  "version": "2.0.0-draft",
+  "status": "PROPOSAL — not loaded by the app. tokens.json (v1) is still the live file.",
+  "note": "当代水墨微光. Ink is structure, watercolour is wetness. No pure black, no pure white, no neon.",
+
+  "canvas": {
+    "logicalSizePx": 132,
+    "maxDevicePixelRatio": 2,
+    "background": "transparent"
+  },
+
+  "ink": {
+    "_role": "structure. counts for >=88% of any screen",
+    "black": "#070B14",
+    "blue": "#0A1018",
+    "lifted": "#101828",
+    "waterline": "#1A2333"
+  },
+
+  "paper": {
+    "_role": "information. never pure white",
+    "ivory": "#EDE6D8",
+    "mist": "#D6D2C8",
+    "haze": "#8A929F",
+    "faint": "#5C6472",
+    "rule": "#3A4250"
+  },
+
+  "cinnabar": {
+    "_role": "light. <=2% of any screen, or it stops being a faint glow",
+    "zhu": "#AC372C",
+    "fei": "#C4483C",
+    "yan": "#92282C",
+    "jiang": "#681B22",
+    "lamp": "#FFD2BC",
+    "_note": "'lamp' appears only within 1.5px of the core centre"
+  },
+
+  "levels": {
+    "FAINT":   { "core": "zhu",  "coreRadiusPx": 5.2, "inkRadiusPx": 13, "mistRadiusPx": 34, "mistAlpha": 0.30, "breathPeriodMs": 15000 },
+    "GROWING": { "core": "fei",  "coreRadiusPx": 5.8, "inkRadiusPx": 17, "mistRadiusPx": 44, "mistAlpha": 0.36, "breathPeriodMs": 13000 },
+    "BLAZING": { "core": "yan",  "coreRadiusPx": 6.4, "inkRadiusPx": 22, "mistRadiusPx": 54, "mistAlpha": 0.42, "breathPeriodMs": 12000 },
+    "DEEP":    { "core": "jiang","coreRadiusPx": 7.0, "inkRadiusPx": 28, "mistRadiusPx": 64, "mistAlpha": 0.48, "breathPeriodMs": 12000 },
+    "DORMANT": { "core": "haze", "coreRadiusPx": 3.4, "inkRadiusPx": 9,  "mistRadiusPx": 20, "mistAlpha": 0.16, "breathPeriodMs": 16000 }
+  },
+
+  "layers": {
+    "_role": "the four layers of the light point, back to front",
+    "mist":  { "blend": "add",       "blotch": 0.22, "waterLine": 0.035 },
+    "ink":   { "blend": "multiply",  "alpha": 0.50,   "blotch": 0.18 },
+    "core":  { "blend": "add",       "alpha": 2.30,   "edgeHarmonics": 3, "edgeAmount": 0.12 },
+    "lamp":  { "blend": "add",       "radiusFactor": 0.78, "alpha": 1.0 }
+  },
+
+  "edge": {
+    "_role": "an irregular, bleeding rim. static per level — never animated",
+    "harmonics": 4,
+    "inkAmount": 0.30,
+    "mistAmount": 0.26,
+    "coreAmount": 0.12
+  },
+
+  "breath": {
+    "_role": "the core stays steady; the mist breathes",
+    "radiusAmplitude": 0.045,
+    "alphaAmplitude": 0.10,
+    "phaseOffsetRad": 0.4,
+    "coreAmplitude": 0.0
+  },
+
+  "wallpaper": {
+    "_role": "ink is subtractive, light is additive: light paper shows ink, dark paper shows light",
+    "dark": { "inkAlphaScale": 1.0, "mistAlphaScale": 1.0 },
+    "light": { "inkAlphaScale": 1.6, "mistAlphaScale": 0.7 }
+  },
+
+  "motion": {
+    "verbs": ["渗", "呼", "散", "沉", "起"],
+    "easeInkBleed": [0.16, 1.0, 0.30, 1.0],
+    "easeInkSettle": [0.22, 0.61, 0.36, 1.0],
+    "durations": {
+      "microMs": 320,
+      "pulseMs": 900,
+      "levelChangeMs": 1800,
+      "washSpreadMs": 2600,
+      "ringDissolveMs": 4200,
+      "pageEnterMs": 600
+    },
+    "forbidden": [
+      "spinner", "skeleton", "progressBar", "neonPulse",
+      "bounce", "overshoot", "hoverScale",
+      "anyTransitionUnder300ms", "moreThanThreeSimultaneousMoves"
+    ]
+  },
+
+  "layout": {
+    "panelWidthPx": 900,
+    "panelHeightPx": 1140,
+    "marginPx": 96,
+    "contentMaxWidthPx": 560,
+    "columns": 12,
+    "gutterPx": 32,
+    "spacingScale": [8, 12, 20, 32, 52, 84],
+    "baselinePx": 4
+  },
+
+  "type": {
+    "titleFamily": "Songti SC",
+    "bodyFamily": "PingFang SC",
+    "scale": { "display": 56, "headline": 34, "echo": 24, "body": 17, "small": 14, "caption": 12, "micro": 10 },
+    "tracking": { "eyebrow": 3.2, "title": 6.0, "body": 0.2 },
+    "lineHeight": { "display": 1.15, "body": 1.75 }
+  },
+
+  "nav": {
+    "items": ["我的光", "传光", "光路", "回响"],
+    "indicatorWidthPx": 24,
+    "enterOffsetPx": 8
+  }
+}

@@ -1,0 +1,115 @@
+/* Editorial Light 2.0 — 光的私人档案
+   Tokens are the single source for colour, type and rhythm. Pages compose; they do not
+   invent values. */
+page {
+  --canvas: #FFFFFF;
+  --ink: #202825;
+  --ink-2: #66716B;
+  --ink-3: #8A938D;
+  --terracotta: #A96B5B;
+  --rule: #D8DCD3;
+  --warm: #E7D4BF;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+view, text { box-sizing: border-box; }
+
+/* ---- composition ---- */
+/* custom navigation: the masthead is the header, so it carries the status-bar inset */
+.page { min-height: 100vh; padding: 0 48rpx calc(48rpx + env(safe-area-inset-bottom)); }
+.masthead { padding-top: 24rpx; }
+.masthead { display: flex; align-items: baseline; justify-content: space-between;
+  padding: 24rpx 0 14rpx; border-bottom: 1rpx solid var(--rule); }
+.wordmark { font-size: 11px; letter-spacing: 4rpx; color: var(--ink-2); }
+.masthead .nav { font-size: 12px; color: var(--ink-3); }
+
+/* ---- type ---- */
+.overline { font-size: 10px; letter-spacing: 3rpx; color: var(--ink-3); margin: 40rpx 0 18rpx; }
+.display { font-size: 28px; line-height: 1.22; font-weight: 600; letter-spacing: 1rpx; margin: 0; }
+.title { font-size: 20px; line-height: 1.35; font-weight: 600; margin: 0; }
+.lede { font-size: 13.5px; line-height: 1.85; color: var(--ink-2); margin: 16rpx 0 0; }
+.note { font-size: 12px; line-height: 1.7; color: var(--ink-3); }
+.figure { font-size: 40px; font-weight: 300; letter-spacing: -1rpx; line-height: 1; font-variant-numeric: tabular-nums; }
+.unit { font-size: 12px; color: var(--ink-2); margin-left: 8rpx; }
+
+/* ---- rules & rows ---- */
+.hr { height: 1rpx; background: var(--rule); margin: 36rpx 0; }
+.rule-thick { height: 3rpx; background: var(--ink); margin: 28rpx 0 0; width: 64rpx; }
+.row { display: flex; align-items: center; justify-content: space-between;
+  min-height: 44px; padding: 22rpx 0; border-bottom: 1rpx solid var(--rule); }
+.row .k { font-size: 12.5px; color: var(--ink-2); }
+.row .v { font-size: 13px; color: var(--ink); }
+.row .v.muted { color: var(--ink-3); font-size: 12.5px; }
+
+/* ---- light ---- */
+.light-stage { position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 56rpx 0 24rpx; }
+.light-hero { width: 330rpx; height: 330rpx; animation: breathe 9s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: .96; }
+  50% { transform: scale(1.015); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .light-hero { animation: none; } }
+
+/* ---- actions ---- */
+.action { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 2px; font-size: 13.5px; font-weight: 600;
+  color: var(--terracotta); border-bottom: 2rpx solid var(--terracotta); }
+.action.quiet { color: var(--ink-2); border-bottom-color: var(--rule); font-weight: 400; }
+.action.block { display: flex; justify-content: center; width: 100%; }
+.link { display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; min-width: 44px; padding: 0 8px; font-size: 12.5px;
+  color: var(--ink-2); border-bottom: 1rpx solid var(--rule); }
+.footer-links { display: flex; gap: 40rpx; margin-top: 48rpx; padding-top: 24rpx;
+  border-top: 1rpx solid var(--rule); }
+
+/* ---- states ---- */
+.empty { padding: 72rpx 0; text-align: left; }
+.empty .mark { font-size: 20px; color: var(--ink-3); margin-bottom: 16rpx; }
+.warn { color: var(--terracotta); font-size: 13px; line-height: 1.7; }
+.ok { color: #4F6B67; font-size: 13px; line-height: 1.7; }
+
+/* ---- pairing ---- */
+.code-input { font-size: 26px; letter-spacing: 14rpx; padding: 28rpx 0 20rpx;
+  border-bottom: 2rpx solid var(--ink); font-variant-numeric: tabular-nums; }
+.steps { margin: 32rpx 0 0; }
+.step { display: flex; gap: 20rpx; padding: 18rpx 0; }
+.step .n { font-size: 11px; color: var(--ink-3); letter-spacing: 2rpx; padding-top: 6rpx; width: 44rpx; }
+.step .t { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+.step.pending .t { color: var(--ink-3); }
+.fingerprint { font-size: 18px; letter-spacing: 8rpx; color: var(--ink); margin-top: 10rpx;
+  font-variant-numeric: tabular-nums; }
+
+/* ---- archive (echo) ---- */
+.entry { padding: 30rpx 0; border-bottom: 1rpx solid var(--rule); }
+.entry .when { font-size: 11px; letter-spacing: 3rpx; color: var(--ink-3); }
+.entry .what { font-size: 14px; line-height: 1.75; margin-top: 10rpx; }
+.quote { font-size: 17px; line-height: 1.9; font-weight: 600; margin: 24rpx 0 0; }
+
+/* ---- Ignition overlay: full-screen, above everything, removed when done ---- */
+.ignition {
+  position: fixed; left: 0; top: 0; right: 0; bottom: 0;
+  background-color: #F6F7F4; z-index: 999; display: flex;
+  align-items: center; justify-content: center;
+  transition: background-color 320ms ease-out;
+}
+/* the real page comes through underneath while the last trails are still fading */
+.ignition.revealing { background-color: rgba(246, 247, 244, 0); }
+.ignition-canvas { width: 100%; height: 100%; }
+.ignition-skip {
+  position: absolute; left: 12px; top: 8px;
+  min-width: 44px; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--ink-2); letter-spacing: 1px;
+  background: transparent;
+  transition: opacity 180ms ease-out;
+}
+/* the page title arrives under the last trails; the skip must be gone before it does */
+.ignition-skip.hide { opacity: 0; pointer-events: none; }
+
+/* every secondary page carries the way home */
+.home-nav { color: var(--ink-2); font-size: 12.5px; padding: 10px 8px 10px 0; }
+
+.home-left { display: flex; align-items: baseline; }
+.home-left .wordmark { margin-left: 10px; }

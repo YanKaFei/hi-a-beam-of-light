@@ -1,0 +1,30 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <view class="masthead">
+    <view class="home-left"><text class="nav home-nav" bindtap="goHome">← 我的光</text>
+    <text class="wordmark">设置</text></view>
+    <text class="nav" bindtap="back">返回</text>
+  </view>
+
+  <text class="overline">身份</text>
+  <view class="row"><text class="k">光种</text><text class="v muted">{{anonId || '—'}}</text></view>
+  <view class="row"><text class="k">设备</text>
+    <text class="v {{device ? '' : 'muted'}}">{{device ? device.device_id : '未连接'}}</text></view>
+  <view class="row" wx:if="{{device}}"><text class="k">设备状态</text><text class="v muted">{{device.status}}</text></view>
+
+  <text class="overline">隐私与安全</text>
+  <view class="note">插件只上报"发生了一次调用"，不上传提示词与回答正文。签名有效不等于使用已被独立核准。</view>
+  <view class="row" wx:if="{{device}}" bindtap="revoke">
+    <text class="k" style="color:var(--terracotta)">解除设备绑定</text><text class="v muted">不可撤销</text></view>
+  <view wx:if="{{revoked}}" class="warn" style="margin-top:16rpx">已解除。电脑插件需要重新配对。</view>
+
+  <text class="overline">关于</text>
+  <view class="row" bindtap="toggle"><text class="k">开源与协议</text><text class="v muted">{{expanded ? '收起' : '展开'}}</text></view>
+  <view wx:if="{{expanded}}" class="note" style="margin-top:14rpx">
+    核心协议与服务端开源可审计。公开光场当前关闭；正式激活需要独立可信来源核准。
+  </view>
+
+  <view style="margin-top:56rpx">
+    <view class="action block quiet" bindtap="logout">退出登录</view>
+  </view>
+  <view wx:if="{{loggedOut}}" class="note" style="margin-top:16rpx">已退出。下次进入会重新登录。</view>
+</view>

@@ -1,0 +1,19 @@
+{
+  "name": "@firstlight/protocol",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Cross-platform FirstLight protocol: JSON Schemas, shared fixtures, and an independent reference implementation of the core rules.",
+  "scripts": {
+    "test": "node --test test/conformance.test.mjs",
+    "contract": "node test/conformance.test.mjs"
+  },
+  "files": [
+    "schemas",
+    "fixtures",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

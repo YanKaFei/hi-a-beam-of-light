@@ -1,0 +1,28 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <view class="masthead">
+    <view class="home-left"><text class="nav home-nav" bindtap="goHome">← 我的光</text>
+    <text class="wordmark">传光</text></view>
+    <text class="nav" bindtap="goPaths">光路</text>
+  </view>
+
+  <text class="overline">邀请</text>
+  <view class="display">{{copy.title}}</view>
+  <view class="lede">{{copy.body}}</view>
+  <view class="rule-thick"></view>
+
+  <view wx:if="{{stage === 'created'}}" style="margin-top:40rpx">
+    <text class="overline">邀请有效期</text>
+    <view class="figure">15<text class="unit">分钟</text></view>
+    <view class="note" style="margin-top:12rpx">分享和接收功能正在准备，暂时无法在此页面完成传光。</view>
+  </view>
+
+  <view wx:if="{{err}}" class="warn" style="margin-top:28rpx">{{err}}</view>
+
+  <view style="margin-top:56rpx">
+    <view class="action block" bindtap="act">{{copy.action}}</view>
+  </view>
+
+  <view class="note" style="margin-top:40rpx">
+    正式激活需要独立可信来源核准。当前插件产生的观察不满足该条件，因此不会点亮。
+  </view>
+</view>

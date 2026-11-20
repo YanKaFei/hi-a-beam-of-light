@@ -1,0 +1,26 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <view class="masthead">
+    <view class="home-left"><text class="nav home-nav" bindtap="goHome">← 我的光</text>
+    <text class="wordmark">光路</text></view>
+    <text class="nav" bindtap="back">返回</text>
+  </view>
+
+  <text class="overline">关系</text>
+  <view class="display" wx:if="{{out.length}}">你传出的光，<view style="display:inline;color:var(--terracotta)">留下了路径</view>。</view>
+  <view class="display" wx:else>还没有<view style="display:inline;color:var(--ink-3)">任何路径</view>。</view>
+
+  <view class="hr"></view>
+
+  <block wx:if="{{out.length}}">
+    <view wx:for="{{out}}" wx:key="transmission_id" class="entry">
+      <view class="when">{{item.kind}}</view>
+      <view class="what">{{item.label}}</view>
+    </view>
+  </block>
+  <view wx:elif="{{loaded}}" class="empty">
+    <view class="mark">—</view>
+    <view class="note">光路会记录你传出的每一束光。没有关系时，这里保持空白，不生成装饰性的关系图。</view>
+    <view style="margin-top:28rpx"><text class="link" bindtap="back">去传光</text></view>
+  </view>
+  <view wx:if="{{err}}" class="warn" style="margin-top:24rpx">{{err}}</view>
+</view>

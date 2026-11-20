@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="ui-version" content="b8r2" />
+<title>第一束光</title>
+<script src="families.js"></script>
+<script src="aperture-engine.js"></script>
+<script src="light-engine.js"></script>
+<style>
+  /* B+ · Editorial Future
+     Light, editorial, precise. Chrome is a hairline; hierarchy is type.
+     Every colour used for text was measured against its background:
+     text 13.5:1 · text2 5.2:1 · text3 4.8:1 · white on action 6.4:1 · ok 5.4:1 (AA). */
+  :root{
+    --canvas:#F6F7F4; --surface:#FFFFFF; --surface2:#EDEFEA; --divider:#C6CFC9;
+    --text:#202B30; --text2:#5F696E; --text3:#667078;
+    --action:#8A4F41;          /* fill: white text passes 6.4:1 */
+    --action-soft:#A96B5B;     /* large text / non-text only (4.25:1) */
+    --ok:#4F6B67; --danger:#A33A34; --warn:#8A6420;
+    --m:44px;
+    --ease:cubic-bezier(.2,.7,.3,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--canvas);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;font-size:13px;overflow:hidden;
+    -webkit-user-select:none;user-select:none}
+  /* three children: header, rule, main — the row count must match or main
+     falls into an implicit auto row and collapses to zero height */
+  #app{height:100%;display:grid;grid-template-rows:auto auto 1fr}
+
+  /* ---- shell ------------------------------------------------------- */
+  header{display:flex;align-items:baseline;justify-content:space-between;
+    padding:22px var(--m) 0;border-bottom:1px solid transparent}
+  .wordmark{font-size:12px;letter-spacing:.16em;color:var(--text2)}
+  nav{display:flex;gap:22px;align-items:baseline}
+  nav button{background:none;border:0;font:inherit;font-size:12.5px;color:var(--text3);
+    cursor:pointer;padding:4px 0;position:relative}
+  nav button:hover{color:var(--text)}
+  nav button[aria-current="true"]{color:var(--text);font-weight:600}
+  nav button[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-3px;
+    height:1px;background:var(--text)}
+  #rule{height:1px;background:var(--divider);margin:10px var(--m) 0}
+
+  main{position:relative;overflow:hidden;padding:0 var(--m)}
+  section{position:absolute;inset:0;padding:22px var(--m) 20px;display:none;flex-direction:column;
+    overflow-x:hidden}
+  html[data-ov="auto"] section{overflow-y:auto}
+  html[data-ov="hidden"] section,html[data-ov="smart"] section{overflow-y:hidden}
+  html[data-ov="smart"] section.needs-scroll{overflow-y:auto}
+  section.on{display:flex;animation:in 200ms var(--ease) both}
+  @keyframes in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+  /* ---- type -------------------------------------------------------- */
+  .kicker{font-size:10.5px;letter-spacing:.22em;color:var(--text3);margin:0 0 10px}
+  h1{font-size:30px;line-height:1.18;font-weight:600;letter-spacing:.005em;margin:0}
+  h2{font-size:21px;line-height:1.25;font-weight:600;margin:0}
+  .big{font-size:40px;line-height:1.05;font-weight:600;font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em}
+  .lead{font-size:13px;line-height:1.65;color:var(--text2);margin:0}
+  .small{font-size:11.5px;line-height:1.55;color:var(--text2)}
+  .meta{font-size:11px;color:var(--text3);font-variant-numeric:tabular-nums}
+
+  /* ---- components -------------------------------------------------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:36px;padding:0 18px;border-radius:7px;border:1px solid transparent;
+    font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+    transition:background 140ms var(--ease),border-color 140ms var(--ease),opacity 140ms var(--ease)}
+  .btn-primary{background:var(--action);color:#fff}
+  .btn-primary:hover{background:#7A4437}
+  .btn-secondary{background:var(--surface);color:var(--text);border-color:var(--divider)}
+  .btn-secondary:hover{border-color:#C9CFC9}
+  .btn-quiet{background:none;border:0;color:var(--text2);font-weight:400;padding:0 2px;height:auto}
+  .btn-quiet:hover{color:var(--text)}
+  .btn:disabled{opacity:.45;cursor:default}
+  .btn:focus-visible,.btn-quiet:focus-visible,button:focus-visible{outline:2px solid var(--action);
+    outline-offset:2px;border-radius:6px}
+
+  .chip{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:10px;
+    font-size:11px;line-height:1;background:var(--canvas);border:1px solid var(--divider);color:var(--text3)}
+  .chip.ok{color:var(--ok);border-color:#CDDBD7;background:#F2F6F4}
+
+  .notice{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:7px;
+    background:#FBEEEB;border-left:3px solid var(--danger);font-size:12px;line-height:1.5;color:var(--text)}
+  .notice.info{background:#EFF3F1;border-left-color:var(--ok)}
+  .notice b{font-weight:600}
+
+  .rows{display:flex;flex-direction:column}
+  .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--divider);
+    font-size:12.5px}
+  .row:first-child{border-top:0}
+  .row .name{font-weight:600;min-width:74px}
+  .row .desc{color:var(--text2);font-size:11.5px}
+  .row .tag{margin-left:auto;font-size:11px;color:var(--text3)}
+  .row .tag.ok{color:var(--ok)}
+
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:none}
+  .dot.hollow{background:transparent;box-shadow:inset 0 0 0 1.5px var(--text3)}
+
+  /* ---- 我的光 ------------------------------------------------------ */
+  #v-mine{gap:0}
+  .identity{display:flex;flex-direction:column;gap:2px}
+  .identity-row{display:flex;align-items:center}
+  .count{display:flex;align-items:baseline;gap:8px;margin-top:14px}
+  .count .unit{font-size:12px;color:var(--text2)}
+  .rule{height:1px;background:var(--divider);margin:18px 0 0;border:0}
+  .actions{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:16px}
+  .scanline{display:flex;align-items:center;gap:10px;padding-top:12px;font-size:11.5px;color:var(--text2)}
+
+  /* ---- 传光 -------------------------------------------------------- */
+  .give{display:grid;grid-template-columns:1fr 208px;gap:28px;margin-top:16px}
+  .give-state{display:flex;flex-direction:column;gap:10px}
+  .qr-plate{padding:16px;border-radius:8px;background:var(--surface);border:1px solid var(--divider);
+    align-self:start}
+  .qr-plate img{display:block;width:176px;height:176px}
+  .qr-empty{width:176px;height:176px;border-radius:6px;background:var(--surface2);
+    display:grid;place-items:center;font-size:11px;color:var(--text3)}
+
+  /* ---- 光路 -------------------------------------------------------- */
+  .stats{display:flex;gap:40px;margin-top:6px}
+  .stat .n{font-size:34px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums}
+  .stat .l{font-size:11px;color:var(--text2);margin-top:6px}
+  .stat .h{font-size:10.5px;color:var(--text3);margin-top:2px}
+  .timeline{margin-top:16px}
+
+  /* ---- 回响 -------------------------------------------------------- */
+  .echo{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:28px}
+  .echo .line{font-size:22px;line-height:1.55;font-weight:600;margin:0 0 10px;max-width:420px}
+  .echo .line.dim{color:var(--text2);font-weight:600}
+  .hist{margin-top:26px;max-width:430px}
+  .hist .h{font-size:10.5px;letter-spacing:.2em;color:var(--text3);margin-bottom:6px}
+  .hist .r{font-size:11.5px;color:var(--text2);padding:6px 0;border-top:1px solid var(--divider)}
+
+  /* ---- settings ---------------------------------------------------- */
+  #settings{position:absolute;inset:0;background:var(--canvas);z-index:6;display:none;
+    padding:24px var(--m);overflow-y:auto}
+  #settings.on{display:block}
+  #settings h2{font-size:19px;margin-bottom:14px}
+  .kv{display:flex;justify-content:space-between;font-size:12px;padding:8px 0;
+    border-top:1px solid var(--divider)}
+  .kv .k{color:var(--text2)}
+  .kv .v{font-variant-numeric:tabular-nums}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:11px;color:var(--text);
+    word-break:break-all}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  @media (prefers-reduced-motion:reduce){section.on{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="wordmark">第一束光</div>
+    <nav aria-label="主导航">
+      <button data-v="mine" aria-current="true">我的光</button>
+      <button data-v="give">传光</button>
+      <button data-v="paths">光路</button>
+      <button data-v="echo">回响</button>
+    </nav>
+  </header>
+  <div id="rule"></div>
+
+  <main>
+    <section id="v-mine" class="on">
+      <p class="kicker">我的光</p>
+      <div class="identity">
+        <div class="identity-row">
+          <canvas id="m-symbol" width="88" height="88" aria-hidden="true"
+                  style="display:none;width:44px;height:44px;margin-right:14px"></canvas>
+          <h1 id="m-title">寻光者</h1>
+        </div>
+        <div class="count"><span class="big" id="m-count">0</span><span class="unit">个可信模型家族</span></div>
+      </div>
+      <hr class="rule" />
+      <div class="rows" id="m-rows"></div>
+      <div class="scanline">
+        <span id="m-scan">扫描授权已关闭</span>
+        <span style="color:var(--text3)">·</span>
+        <span id="m-scan-note" style="color:var(--text3)">关闭时不会读取任何数据</span>
+        <button class="btn btn-quiet" id="m-scan-action" style="margin-left:auto">开启扫描</button>
+      </div>
+      <div id="m-scan-notice" style="margin-top:10px"></div>
+      <div class="actions">
+        <button class="btn btn-primary" id="m-primary">开始点亮</button>
+        <button class="btn btn-quiet" id="m-secondary">查看模型</button>
+      </div>
+    </section>
+
+    <section id="v-give">
+      <p class="kicker">传光</p>
+      <h2 id="give-title">传一束光给别人</h2>
+      <p class="lead" id="give-lead" style="margin-top:6px">传光不会减少你的光。对方接收后，你们之间会出现一条光路。</p>
+      <div class="give">
+        <div class="give-state">
+          <div id="give-notice"></div>
+          <p class="lead" id="give-state"></p>
+          <div style="display:flex;gap:12px;margin-top:6px">
+            <button class="btn btn-primary" id="give-primary">生成二维码</button>
+            <button class="btn btn-secondary" id="give-secondary" style="display:none">确认传光</button>
+            <button class="btn btn-quiet" id="give-cancel" style="display:none">取消</button>
+          </div>
+        </div>
+        <div class="qr-plate" id="give-plate" style="display:none">
+          <img id="give-qr" alt="传光二维码" width="176" height="176" />
+        </div>
+      </div>
+    </section>
+
+    <section id="v-paths">
+      <p class="kicker">光路</p>
+      <h2>你传出的光</h2>
+      <div class="stats">
+        <div class="stat"><div class="n" id="p-on">0</div><div class="l">已激活</div><div class="h">对方已被证据点亮</div></div>
+        <div class="stat"><div class="n" id="p-wait">0</div><div class="l">待激活</div><div class="h">已建立关系，尚无使用</div></div>
+        <div class="stat"><div class="n" id="p-in">0</div><div class="l">我收到的</div><div class="h">别人传给我的</div></div>
+      </div>
+      <div class="timeline rows" id="p-list"></div>
+    </section>
+
+    <section id="v-echo">
+      <p class="kicker">回响</p>
+      <div class="echo">
+        <p class="line dim" id="e-line">还没有回响</p>
+        <p class="meta" id="e-time" style="display:none"></p>
+        <div class="hist" id="e-hist" style="display:none">
+          <div class="h">历史</div>
+          <div id="e-rows"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="settings" role="dialog" aria-label="设置">
+  <h2>设置</h2>
+  <div class="kv"><span class="k">光种</span><span class="v" id="s-anon">—</span></div>
+  <div class="kv"><span class="k">凭据存储</span><span class="v" id="s-backend">—</span></div>
+  <div class="kv"><span class="k">传光服务</span><span class="v" id="s-api">—</span></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+    <button class="btn btn-secondary" id="btn-quiet">安静模式</button>
+    <button class="btn btn-secondary" id="btn-ct">点击穿透</button>
+    <button class="btn btn-secondary" id="btn-reset">放回中央</button>
+    <button class="btn btn-secondary" id="btn-export">导出恢复凭据</button>
+    <button class="btn btn-secondary" id="btn-import">恢复身份</button>
+  </div>
+  <p class="small" id="recovery" style="margin-top:14px"></p>
+  <div style="margin-top:22px"><button class="btn btn-primary" id="btn-close">收起</button></div>
+</div>
+<p class="sr" id="live" aria-live="polite"></p>
+
+<script>
+const TAURI = window.__TAURI__ || {};
+const invoke = (TAURI.core && TAURI.core.invoke) || (async () => null);
+const listen = (TAURI.event && TAURI.event.listen) || (() => Promise.resolve(() => {}));
+const $ = (id) => document.getElementById(id);
+const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let tokens=null, light={}, transfer={}, apiOn=false, scanOn=false, view="mine";
+const LEVEL_TITLE = { DORMANT:"寻光者", FAINT:"初明者", GROWING:"启迪者", BLAZING:"探索者", DEEP:"拓界者" };
+
+/* 我的光 — the number and the title both come from the server; the page never
+   recomputes them, so a screen can never disagree with the stored evidence. */
+async function refreshLight() {
+  let s=null; try { s = await invoke("light_status"); } catch (_) {}
+  if (s) light = s;
+  const n = light.verified_families || 0;
+  const title = (light.knowledge_title && light.knowledge_title.zh) || LEVEL_TITLE[light.level] || "寻光者";
+  $("m-title").textContent = title;
+  $("m-count").textContent = String(n);
+
+  const rows = $("m-rows");
+  if (n === 0) {
+    rows.innerHTML = '<p class="lead" style="padding:12px 0">还没有可核验的模型使用。开启扫描后，这里会显示你已经确认使用过的模型家族。</p>';
+    $("m-primary").textContent = "开始点亮";
+    $("m-secondary").style.display = "none";
+  } else {
+    // the server tells us which families are proven; the page only lays them out
+    // families arrives as FamilyView[]: {family, level, sessions, raw_models, countable}.
+    // The panel asked for `f.name` for a while and rendered "undefined"; the shape is
+    // now normalised in one place, with a validated fallback instead of a guess.
+    const view = normalizeFamilies(light.families);
+    if (view.error) {
+      rows.innerHTML = '<p class="lead" style="padding:12px 0">模型数据暂不可用。这可能是一次读取失败，稍后重新扫描即可。</p>';
+    } else if (view.verified.length === 0) {
+      rows.innerHTML = '<p class="lead" style="padding:12px 0">还没有可核验的模型使用。开启扫描后，这里会显示你已经确认使用过的模型家族。</p>';
+    } else {
+      rows.innerHTML = view.verified.concat(view.discovered).map((f) => `<div class="row">
+        <span class="name">${esc(f.displayName)}</span>
+        <span class="desc">${f.verificationStatus === "verified" ? "已获得可信使用证据" : "仅发现，尚未确认使用"}</span>
+        <span class="tag ${f.verificationStatus === "verified" ? "ok" : ""}">${f.verificationStatus === "verified" ? "已核验" : "已发现"}</span></div>`).join("");
+    }
+    $("m-primary").textContent = "传一束光";
+    $("m-secondary").style.display = "";
+  }
+  try {
+    const st = await invoke("get_settings");
+    if (st) scanOn = !!st.scan_enabled;
+  } catch (_) {}
+  renderScan(light.scan || {}, n, scanOn);
+  paintSymbol();
+}
+
+/* 传光 — one state table, no timers. `phase` is written only by the server. */
+const PHASE = {
+  idle:       ["生成二维码", "还没有邀请。生成后请对方扫码。"],
+  creating:   ["生成中…",   "正在向传光服务请求邀请。"],
+  waiting:    ["重新生成",   "把二维码交给对方扫描。有效期内只能使用一次。"],
+  received:   ["重新生成",   "对方已经接收，等待你确认。"],
+  learning:   ["重新生成",   "关系已建立。等对方产生真实的 AI 使用后才会点亮。"],
+  activated:  ["再传一束",   "这束光已经点亮。"],
+  acknowledged:["再传一束",  "这束光已经点亮，回响已送达。"],
+  expired:    ["重新生成",   "这次邀请已过期。"],
+  cancelled:  ["生成二维码", "这次传光已取消。"],
+  failed:     ["重试",       "传光没有完成。"],
+};
+
+async function refreshTransfer() {
+  try { const t = await invoke("transfer_snapshot"); if (t) transfer = t; } catch (_) {}
+  const ph = apiOn ? (transfer.phase || "idle") : "offline";
+  const [action, text] = PHASE[ph] || PHASE.idle;
+
+  const notice = $("give-notice");
+  if (!apiOn) {
+    notice.innerHTML = '<div class="notice"><div><b>传光服务未连接</b><br/>你自己的光不受影响。连接后才能发出一束光。</div></div>';
+    $("give-state").textContent = "";
+    $("give-plate").style.display = "none";
+    $("give-primary").textContent = "重试连接";
+    $("give-secondary").style.display = "none";
+    $("give-cancel").style.display = "none";
+    return;
+  }
+  notice.innerHTML = "";
+  $("give-state").textContent = text;
+  $("give-primary").textContent = action;
+  $("give-primary").disabled = ph === "creating";
+  $("give-secondary").style.display = ph === "received" ? "inline-flex" : "none";
+  $("give-cancel").style.display = (ph === "waiting" || ph === "received") ? "inline-flex" : "none";
+
+  const showQR = (ph === "waiting" || ph === "received") && !!transfer.qr_url;
+  $("give-plate").style.display = showQR ? "block" : "none";
+  if (showQR) $("give-qr").src = transfer.qr_url;
+}
+
+async function refreshApi() {
+  const s = await invoke("api_status").catch(() => ({ connected:false }));
+  apiOn = !!s.connected;
+  $("s-api").textContent = apiOn ? "已连接" : "未连接";
+}
+
+function fmt(ms) {
+  if (!ms) return "";
+  const d = new Date(ms), p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())}  ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+async function refreshPaths() {
+  const list = $("p-list");
+  if (!apiOn) {
+    $("p-on").textContent="0"; $("p-wait").textContent="0"; $("p-in").textContent="0";
+    list.innerHTML = '<p class="lead" style="padding-top:14px">连接传光服务后，这里会记录你传出的每一束光。</p>';
+    return;
+  }
+  let p=null; try { p = await invoke("light_paths"); } catch (_) {
+    list.innerHTML = '<p class="lead" style="padding-top:14px">光路暂时读取失败，可以稍后再试。</p>'; return;
+  }
+  const out = p.outgoing || [];
+  $("p-on").textContent = String(out.filter((e)=>e.state==="ACTIVATED").length);
+  $("p-wait").textContent = String(out.filter((e)=>e.state==="FORMED").length);
+  $("p-in").textContent = String((p.incoming||[]).length);
+  const KIND = { FIRST_LIGHT:"首次点亮", NEW_DISCOVERY:"新发现", RESONANCE:"共鸣" };
+  list.innerHTML = out.length
+    ? out.map((e) => `<div class="row"><span class="dot ${e.state==="ACTIVATED"?"":"hollow"}"></span>
+        <span class="name" style="min-width:auto">${KIND[e.kind]||"传光"}</span>
+        <span class="meta">${fmt(e.created_at_ms)}</span>
+        <span class="tag ${e.state==="ACTIVATED"?"ok":""}">${e.state==="ACTIVATED"?"已激活":"待激活"}</span></div>`).join("")
+    : '<p class="lead" style="padding-top:14px">还没有传出过光。可以从「传光」开始。</p>';
+}
+
+async function refreshEcho() {
+  let e=[]; if (apiOn) { try { e=(await invoke("light_paths")).echoes||[]; } catch (_) {} }
+  const has = e.length>0;
+  $("e-line").textContent = has ? "你传出的一束光，已经在远方亮起。" : "还没有回响";
+  $("e-line").className = "line" + (has ? "" : " dim");
+  $("e-time").style.display = has ? "block" : "none";
+  $("e-time").textContent = has ? fmt(e[0].at_ms) : "";
+  $("e-hist").style.display = has ? "block" : "none";
+  $("e-rows").innerHTML = e.slice(0,5).map((x)=>`<div class="r">${fmt(x.at_ms)} · ${x.message}</div>`).join("");
+}
+
+/* The symbol is identity only: it renders the tier the title already states. */
+let PANEL_STYLE = "legacy";
+async function paintSymbol() {
+  const c = document.getElementById("m-symbol");
+  if (!c || PANEL_STYLE === "legacy" || !window.Aperture) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const px = 44;
+  c.width = px * dpr; c.height = px * dpr;
+  c.style.display = "block";
+  const ctx = c.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = parseInt($("m-count").textContent, 10) || 0;
+  const tier = Math.min(1, n / 7);
+  window.Aperture.paintCompressed
+    ? window.Aperture.paintCompressed(ctx, px, tier, 1.0, "8%", { variant: PANEL_STYLE })
+    : window.Aperture.paintCompensated(ctx, px, tier, 1.0, "8%", { variant: PANEL_STYLE });
+}
+
+async function refreshIdentity() {
+  const id = await invoke("identity_status").catch(()=>null);
+  const ok = !!(id && id.ok);
+  $("s-anon").textContent = ok ? id.anon_id.slice(0,16)+"…" : "不可用";
+  $("s-backend").textContent = ok ? id.backend : "—";
+  if (!ok && id && id.error) $("recovery").textContent = id.error;
+}
+
+
+/* ---- data contract -------------------------------------------------
+   FamilyView (Rust) -> FamilyVM (this file). One place decides what a model
+   row means; nothing downstream reads a raw field name. Unknown shapes are an
+   error state, never a fabricated name. */
+const normalizeFamilies = (raw) => window.Families.normalize(raw);
+const esc = (v) => window.Families.esc(v);
+
+window.__familiesDiag = () => {
+  const raw = light.families;
+  const first = Array.isArray(raw) && raw.length ? raw[0] : null;
+  const view = normalizeFamilies(raw);
+  const rendered = [...document.querySelectorAll("#m-rows .name")].map((e) => e.textContent);
+  return {
+    hasField: Object.prototype.hasOwnProperty.call(light, "families"),
+    type: Array.isArray(raw) ? "array" : typeof raw,
+    length: Array.isArray(raw) ? raw.length : null,
+    elementType: first === null ? null : Array.isArray(first) ? "array" : typeof first,
+    elementKeys: first && typeof first === "object" ? Object.keys(first) : [],
+    normalizedIds: view.verified.concat(view.discovered).map((f) => f.familyId),
+    rendererPath: "item.family -> vm.familyId -> .name",
+    renderedText: rendered,
+    invalidTextPresent: rendered.some((t) => window.Families.INVALID.test(t)),
+    error: view.error,
+  };
+};
+
+
+/* ---- scan state ----------------------------------------------------
+   The payload distinguishes seven outcomes; mapping them onto one boolean is what
+   produced "已关闭" for a sandbox denial. Each state names the cause and the next
+   step, and a failure never erases models that were already proven. */
+const SCAN_TEXT = {
+  off:       ["扫描授权已关闭", "关闭时不会读取任何数据", "开启扫描"],
+  never:     ["已授权，尚未扫描", "读取前需要你点一次「扫描一次」", "扫描一次"],
+  denied:    ["本次扫描未获授权", "只有明确确认后才会读取", "扫描一次"],
+  blocked:   ["系统拒绝了访问", "可以在系统设置里检查权限后重试", "重试"],
+  no_client: ["未找到支持的 AI 客户端", "安装后可以再试一次", "重新扫描"],
+  unreadable:["数据源暂时无法读取", "稍后可以再试一次", "重新扫描"],
+  empty:     ["已扫描，暂无可信使用记录", "使用 AI 之后会出现在这里", "重新扫描"],
+  ok:        ["已扫描", "只统计被证据支持的使用", "重新扫描"],
+};
+function scanState(scan, count, enabled) {
+  // `light.scan` is the last ScanOutcome (status + sanitised reason);
+  // `enabled` is the standing permission, which lives in settings.
+  const code = String((scan && (scan.status || scan.last)) || "never").toLowerCase();
+  if (!enabled) return "off";
+  if (code === "never") return "never";
+  if (code === "notauthorized") return "denied";
+  if (code === "clientnotfound") return "no_client";
+  if (code === "accessdenied") return "blocked";
+  if (code === "unreadable" || code === "failed") return "unreadable";
+  return count > 0 ? "ok" : "empty";
+}
+function renderScan(scan, count, enabled) {
+  const state = scanState(scan, count, enabled);
+  const [title, note, action] = SCAN_TEXT[state];
+  $("m-scan").textContent = title;
+  $("m-scan-note").textContent = note;
+  $("m-scan-action").textContent = action;
+  const warn = state === "blocked" || state === "unreadable" || state === "no_client";
+  $("m-scan-notice").innerHTML = warn
+    ? `<div class="notice"><div><b>${title}</b><br/>${note}。已经确认的模型记录不受影响。</div></div>`
+    : "";
+  if (count === 0) $("m-primary").textContent = state === "off" ? "开始点亮" : "扫描一次";
+}
+
+function show(v) {
+  view = v;
+  document.title = {mine:"我的光",give:"传光",paths:"光路",echo:"回响"}[v];
+  document.querySelectorAll("section").forEach((s)=>s.classList.toggle("on", s.id==="v-"+v));
+  document.querySelectorAll("nav button").forEach((b)=>b.setAttribute("aria-current", String(b.dataset.v===v)));
+  applyOverflowMode(document.documentElement.dataset.ov);
+  if (v==="paths") refreshPaths();
+  if (v==="echo") refreshEcho();
+  if (v==="give") refreshTransfer();
+}
+
+function applyOverflowMode(mode) {
+  document.documentElement.dataset.ov = mode || "smart";
+  if ((mode||"smart") !== "smart") return;
+  for (const sec of document.querySelectorAll("section")) {
+    sec.classList.toggle("needs-scroll", sec.scrollHeight > sec.clientHeight + 1);
+  }
+}
+
+document.querySelectorAll("nav button").forEach((b) => b.onclick = () => show(b.dataset.v));
+
+$("m-primary").onclick = async () => {
+  const n = light.verified_families || 0;
+  if (n > 0) { show("give"); return; }
+  if (!scanOn) {
+    await invoke("set_scan_enabled", { enabled:true }).catch(()=>{});
+    scanOn = true; await refreshLight();
+    $("live").textContent = "已开启扫描授权。点「扫描一次」才会读取数据。";
+    return;
+  }
+  const b = $("m-primary"); b.disabled = true; b.textContent = "正在检查…";
+  const r = await invoke("scan_now", { confirmed:true }).catch((e)=>({ok:false, reason:String(e)}));
+  b.disabled = false;
+  $("live").textContent = (r && r.ok === false) ? (r.reason || "扫描未执行") : "扫描完成";
+  await refreshLight();
+};
+$("m-secondary").onclick = () => show("mine");
+$("m-scan-action").onclick = () => $("m-primary").click();
+
+$("give-primary").onclick = async () => {
+  if (!apiOn) { await refreshApi(); await refreshTransfer(); return; }
+  $("give-primary").disabled = true;
+  try { await invoke("create_invitation"); } catch (_) {}
+  $("give-primary").disabled = false;
+  await refreshTransfer();
+};
+$("give-secondary").onclick = async () => {
+  try { await invoke("confirm_transfer", { id: transfer.invitation_id }); } catch (_) {}
+  await refreshTransfer();
+};
+$("give-cancel").onclick = async () => {
+  try { await invoke("cancel_transfer", { id: transfer.invitation_id }); } catch (_) {}
+  await refreshTransfer();
+};
+
+document.querySelector(".wordmark").onclick = async () => {
+  $("settings").classList.add("on"); await refreshIdentity(); await refreshApi();
+};
+$("btn-close").onclick = () => { $("settings").classList.remove("on"); };
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("btn-close").click(); });
+$("btn-quiet").onclick = async () => { await invoke("set_quiet_mode", { enabled: !light.quiet_mode }).catch(()=>{}); await refreshLight(); };
+$("btn-ct").onclick = () => invoke("set_click_through", { enabled:true }).catch(()=>{});
+$("btn-reset").onclick = () => invoke("reset_position").catch(()=>{});
+$("btn-export").onclick = async () => {
+  try { const c = await invoke("export_recovery"); $("recovery").innerHTML = "请离线保存：<br/><code>"+c+"</code>"; }
+  catch (_) { $("recovery").textContent = "导出失败"; }
+};
+$("btn-import").onclick = async () => {
+  const c = prompt("粘贴恢复凭据"); if (!c) return;
+  try { await invoke("import_recovery", { code:c, allowReplace:false }); $("recovery").textContent="恢复成功"; await refreshLight(); }
+  catch (e) { $("recovery").textContent = "恢复失败："+e; }
+};
+
+window.__panelMetrics = () => {
+  const r = (el) => { if(!el) return null; const b=el.getBoundingClientRect();
+    return {x:Math.round(b.x),y:Math.round(b.y),w:Math.round(b.width),h:Math.round(b.height)}; };
+  const cs = (el) => { if(!el) return null; const c=getComputedStyle(el);
+    return {display:c.display,justifyContent:c.justifyContent,overflow:c.overflow,height:c.height}; };
+  const sec=document.querySelector("section.on");
+  return { viewport:{w:innerWidth,h:innerHeight}, section:r(sec), main:r(document.querySelector("main")),
+    header:r(document.querySelector("header")), title:r(sec&&sec.querySelector("h1,h2")),
+    primary:r(sec&&sec.querySelector(".btn-primary")), sectionStyle:cs(sec),
+    overflow:document.documentElement.dataset.ov,
+    slack: sec ? Math.round(sec.getBoundingClientRect().height -
+      [...sec.children].reduce((a,e)=>a+e.getBoundingClientRect().height,0)) : null };
+};
+
+window.__panelProbe = () => ({
+  ready: !!tokens,
+  uiHash: window.__uiHash || null,
+  uiVersion: (document.querySelector('meta[name="ui-version"]')||{}).content || null, view, overflowMode: document.documentElement.dataset.ov,
+  title: $("m-title").textContent, count: $("m-count").textContent,
+  scan: $("m-scan").textContent, scanNote: $("m-scan-note").textContent,
+  primary: $("m-primary").textContent,
+  giveState: $("give-state").textContent, api: $("s-api").textContent,
+  nav: [...document.querySelectorAll("nav button")].filter((b)=>b.getAttribute("aria-current")==="true").map((b)=>b.textContent),
+  metrics: window.__panelMetrics(),
+  families: window.__familiesDiag(),
+  lightStyle: PANEL_STYLE,
+});
+
+async function boot() {
+  try { const st = await invoke("light_style"); if (st) PANEL_STYLE = st.style || "legacy"; } catch (_) {}
+  try { window.__uiHash = await invoke("ui_build_hash"); } catch (_) {}
+  try { tokens = JSON.parse(await invoke("get_visual_tokens")); } catch (_) { return; }
+  applyOverflowMode("smart");
+  await refreshApi();
+  await refreshLight(); await refreshTransfer(); await refreshPaths(); await refreshEcho();
+  listen("light-updated", refreshLight);
+  listen("transfer-updated", refreshTransfer);
+  addEventListener("resize", () => applyOverflowMode(document.documentElement.dataset.ov));
+  setInterval(() => {
+    if (view==="mine") refreshLight();     // scan authorisation can change outside this page
+    if (view==="paths") refreshPaths();
+    if (view==="echo") refreshEcho();
+    if (view==="give") refreshTransfer();
+  }, 6000);
+}
+boot();
+</script>
+</body>
+</html>

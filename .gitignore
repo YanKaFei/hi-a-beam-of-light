@@ -1,0 +1,32 @@
+# --- rust / build ---
+/target/
+**/*.rs.bk
+__pycache__/
+
+# --- node ---
+node_modules/
+.pnpm-store/
+
+# --- local databases & user data (never commit) ---
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+/local-data/
+/backups/
+
+# --- secrets & private machine data ---
+.env
+.env.*
+*.pem
+*.key
+*.p12
+recovery-code*.txt
+/private/
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db
+
+# local backups (may contain IDE login state — never commit)
+.backups/

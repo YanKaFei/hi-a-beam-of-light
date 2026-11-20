@@ -1,0 +1,28 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <view class="masthead">
+    <view class="home-left"><text class="nav home-nav" bindtap="goHome">← 我的光</text>
+    <text class="wordmark">回响</text></view>
+    <text class="nav">{{echoes.length}} 条</text>
+  </view>
+
+  <block wx:if="{{echoes.length}}">
+    <text class="overline">最近一次</text>
+    <view class="quote">你传出的一束光，<view style="display:inline;color:var(--terracotta)">已经在远方亮起</view>。</view>
+    <view class="hr"></view>
+    <text class="overline">档案</text>
+    <view wx:for="{{echoes}}" wx:key="id" class="entry">
+      <view class="when">{{item.when}}</view>
+      <view class="what">这束光被点亮</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <text class="overline">回响</text>
+    <view class="display">安静</view>
+    <view class="lede">对方真正开始使用之后，这里会亮一次。现在没有任何回响。</view>
+    <view class="hr"></view>
+    <view class="note">这里只记录通过来源政策的事件；未被核准的使用不会出现在这里。</view>
+  </block>
+
+  <view wx:if="{{err}}" class="warn" style="margin-top:24rpx">{{err}}</view>
+</view>

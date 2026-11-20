@@ -1,0 +1,19 @@
+{
+  "name": "@firstlight/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "FirstLight transmission API: anonymous identity, one-time invitations, mutual confirmation, evidence-linked activation, SSE echoes.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "start": "node src/serve.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.13",
+    "hono": "^4.13.14",
+    "qrcode-generator": "^2.0.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

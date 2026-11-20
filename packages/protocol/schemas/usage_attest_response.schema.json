@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "KnowledgeTitle": {
+      "description": "知光称号 (knowledge title), product spec §6.1.",
+      "oneOf": [
+        {
+          "const": "SEEKER",
+          "description": "寻光者",
+          "type": "string"
+        },
+        {
+          "const": "FIRST_LIGHT",
+          "description": "初明者",
+          "type": "string"
+        },
+        {
+          "const": "ENLIGHTENER",
+          "description": "启迪者",
+          "type": "string"
+        },
+        {
+          "const": "EXPLORER",
+          "description": "探索者",
+          "type": "string"
+        },
+        {
+          "const": "FRONTIER",
+          "description": "拓界者",
+          "type": "string"
+        }
+      ]
+    },
+    "LightLevel": {
+      "description": "Light level, product spec §4.3.",
+      "oneOf": [
+        {
+          "const": "DORMANT",
+          "description": "沉睡 — no trusted usage yet.",
+          "type": "string"
+        },
+        {
+          "const": "FAINT",
+          "description": "微明 — 1 family.",
+          "type": "string"
+        },
+        {
+          "const": "GROWING",
+          "description": "生长 — 2–3 families.",
+          "type": "string"
+        },
+        {
+          "const": "BLAZING",
+          "description": "炽热 — 4–6 families.",
+          "type": "string"
+        },
+        {
+          "const": "DEEP",
+          "description": "深红 — 7+ families.",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "counted": {
+      "description": "False when this family was already counted for the identity.",
+      "type": "boolean"
+    },
+    "knowledge_title": {
+      "$ref": "#/$defs/KnowledgeTitle"
+    },
+    "level": {
+      "$ref": "#/$defs/LightLevel"
+    },
+    "verified_families": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "counted",
+    "verified_families",
+    "level",
+    "knowledge_title"
+  ],
+  "title": "UsageAttestResponse",
+  "type": "object"
+}

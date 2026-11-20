@@ -1,0 +1,47 @@
+{
+  "semver": "1.0.0",
+  "issued_at_ms": 1761868800000,
+  "note": "Canonical model family dictionary. This file is DATA, not code, and is the single source of truth shared by the Rust core and every other platform. Never infer a family from a string not listed here.",
+  "families": [
+    { "slug": "gpt",      "provider": "openai",    "display_name": "GPT" },
+    { "slug": "claude",   "provider": "anthropic", "display_name": "Claude" },
+    { "slug": "deepseek", "provider": "deepseek",  "display_name": "DeepSeek" },
+    { "slug": "qwen",     "provider": "alibaba",   "display_name": "Qwen" },
+    { "slug": "gemini",   "provider": "google",    "display_name": "Gemini" },
+    { "slug": "llama",    "provider": "meta",      "display_name": "Llama" },
+    { "slug": "mistral",  "provider": "mistral",   "display_name": "Mistral" },
+    { "slug": "ollama",   "provider": "local",     "display_name": "Ollama" }
+  ],
+  "client_prefixes": [
+    { "prefix": "chatgpt-web/", "client": "chatgpt-web" },
+    { "prefix": "codex/",       "client": "codex" },
+    { "prefix": "cline/",       "client": "cline" },
+    { "prefix": "cursor/",      "client": "cursor" },
+    { "prefix": "qwen-code/",   "client": "qwen-code" }
+  ],
+  "aliases": [
+    { "raw": "codex-auto-review", "match": "exact",
+      "disposition": { "kind": "task_label", "reason": "internal_reviewer_subagent" } },
+
+    { "raw": "gpt-6-sol",              "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "gpt-5.6-sol",            "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "gpt-5.6-terra",          "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "gpt-6.1-sol",            "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "gpt-6-astra",            "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "o3",                     "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "o4-mini",                "match": "exact", "disposition": { "kind": "family", "family": "gpt" } },
+
+    { "raw": "claude-sonnet-4-5",      "match": "exact", "disposition": { "kind": "family", "family": "claude" } },
+    { "raw": "claude-opus-4-1",        "match": "exact", "disposition": { "kind": "family", "family": "claude" } },
+
+    { "raw": "gpt-",     "match": "prefix", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "o3-",      "match": "prefix", "disposition": { "kind": "family", "family": "gpt" } },
+    { "raw": "claude-",  "match": "prefix", "disposition": { "kind": "family", "family": "claude" } },
+    { "raw": "deepseek-","match": "prefix", "disposition": { "kind": "family", "family": "deepseek" } },
+    { "raw": "deepseek_","match": "prefix", "disposition": { "kind": "family", "family": "deepseek" } },
+    { "raw": "qwen",     "match": "prefix", "disposition": { "kind": "family", "family": "qwen" } },
+    { "raw": "gemini-",  "match": "prefix", "disposition": { "kind": "family", "family": "gemini" } },
+    { "raw": "llama",    "match": "prefix", "disposition": { "kind": "family", "family": "llama" } },
+    { "raw": "mistral",  "match": "prefix", "disposition": { "kind": "family", "family": "mistral" } }
+  ]
+}

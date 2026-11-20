@@ -1,0 +1,80 @@
+{
+  "$defs": {
+    "DensityBand": {
+      "description": "Coarse density band. Deliberately discrete so an abused endpoint cannot\nreconstruct a real distribution.",
+      "enum": [
+        "none",
+        "low",
+        "mid",
+        "high"
+      ],
+      "type": "string"
+    },
+    "FieldEventKind": {
+      "oneOf": [
+        {
+          "const": "far_light",
+          "description": "Someone far away lit up.",
+          "type": "string"
+        },
+        {
+          "const": "aggregate",
+          "description": "Several events merged because of the rate cap.",
+          "type": "string"
+        },
+        {
+          "const": "transmission_activated",
+          "description": "A receiver completed a verified activation.",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One SSE frame. `id` doubles as the SSE `id:` field, which the browser sends\nback as `Last-Event-ID` on reconnect — that is the dedup key.",
+  "properties": {
+    "at_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "band": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DensityBand"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "id": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "$ref": "#/$defs/FieldEventKind"
+    },
+    "merged_count": {
+      "description": ">1 only for `Aggregate`.",
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "at_ms",
+    "merged_count"
+  ],
+  "title": "FieldEvent",
+  "type": "object"
+}

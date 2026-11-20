@@ -1,0 +1,138 @@
+{
+  "cases": [
+    {
+      "client": null,
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "gpt-6-sol"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "gpt-5.6-sol"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "gpt-5.6-terra"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "gpt-6.1-sol"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "gpt-6-astra"
+    },
+    {
+      "client": "chatgpt-web",
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "chatgpt-web/gpt-6-sol"
+    },
+    {
+      "client": "chatgpt-web",
+      "disposition": {
+        "family": "gpt",
+        "kind": "family"
+      },
+      "family": "gpt",
+      "raw": "chatgpt-web/gpt-5.6-sol"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "kind": "task_label",
+        "reason": "internal_reviewer_subagent"
+      },
+      "family": null,
+      "raw": "codex-auto-review"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "kind": "unknown"
+      },
+      "family": null,
+      "raw": ""
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "deepseek",
+        "kind": "family"
+      },
+      "family": "deepseek",
+      "raw": "deepseek-r1"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "claude",
+        "kind": "family"
+      },
+      "family": "claude",
+      "raw": "claude-sonnet-4-5"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "qwen",
+        "kind": "family"
+      },
+      "family": "qwen",
+      "raw": "qwen3-coder"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "family": "gemini",
+        "kind": "family"
+      },
+      "family": "gemini",
+      "raw": "gemini-2.5-pro"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "kind": "unknown"
+      },
+      "family": null,
+      "raw": "mystery-model-zzz"
+    },
+    {
+      "client": null,
+      "disposition": {
+        "kind": "unknown"
+      },
+      "family": null,
+      "raw": "my-gpt-wrapper"
+    }
+  ],
+  "note": "Normalization must never guess. Anything absent from the registry is 'unknown'.",
+  "registry_semver": "1.0.0"
+}

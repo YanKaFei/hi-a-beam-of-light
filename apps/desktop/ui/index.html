@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>FirstLight</title>
+<style>
+  html,body{margin:0;padding:0;width:100%;height:100%;background:transparent;overflow:hidden;
+    -webkit-user-select:none;user-select:none}
+  #stage{position:fixed;inset:0;display:grid;place-items:center}
+  #stage.dragging{cursor:grabbing}
+  canvas{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    display:block;pointer-events:none;will-change:opacity,transform}
+  @keyframes fl-breathe{0%,100%{opacity:var(--veil-min,.965)}50%{opacity:1}}
+  @keyframes fl-float{0%,100%{transform:translate(-50%,calc(-50% - var(--float-amp,1px)))}
+                      50%{transform:translate(-50%,calc(-50% + var(--float-amp,1px)))}}
+  @keyframes fl-pulse{0%{transform:translate(-50%,-50%) scale(1)}
+                      40%{transform:translate(-50%,-50%) scale(var(--pulse-scale,1.05))}
+                      100%{transform:translate(-50%,-50%) scale(1)}}
+  #veil.breathe{animation:fl-breathe var(--breath-ms,6400ms) cubic-bezier(.2,.8,.2,1) infinite}
+  #stage.float{animation:fl-float var(--float-ms,16000ms) ease-in-out infinite}
+  #stage.pulse{animation:fl-pulse 900ms cubic-bezier(.2,.8,.2,1) 1}
+</style>
+</head>
+<body>
+<div id="stage" role="img" aria-label="我的光">
+  <canvas id="veil" aria-hidden="true"></canvas>
+  <canvas id="core" aria-hidden="true"></canvas>
+</div>
+<script src="light-engine.js"></script>
+<script src="aperture-engine.js"></script>
+<script>
+// Silent Future / Luminous Matter light point.
+// Business state comes from Rust; this file only decides how it looks.
+let STYLE = "legacy", RIM = "8%", MATERIAL = "base";
+const TAURI = window.__TAURI__ || {};
+const invoke = (TAURI.core && TAURI.core.invoke) || (async () => null);
+const listen = (TAURI.event && TAURI.event.listen) || (() => Promise.resolve(() => {}));
+const SYSTEM_REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+window.__flLastError = null;
+window.addEventListener("error", (e) => { window.__flLastError = e && e.message; });
+
+const veilCanvas = document.getElementById("veil");
+const coreCanvas = document.getElementById("core");
+const stage = document.getElementById("stage");
+
+let tokens = null, light = { level: "DORMANT" }, quiet = false, clickThrough = false;
+const CANVAS = 132;          // the window; the bead is drawn inside it
+const BEAD = 96;             // optical size — the object, not the window
+const state = { level: "DORMANT", dpr: 1, breathMs: 6400 };
+const rings = [], motes = [];
+let transferPhase = "idle", waitingSince = 0, target = null, transitionAt = 0, prevLevel = null;
+
+function motionOff() { return quiet || SYSTEM_REDUCE; }
+function specOf(l) { return window.InkLight.specOf(tokens, l); }
+
+function build(level) {
+  const spec = specOf(level);
+  state.level = level;
+  state.breathMs = spec.breathMs;
+  const geom = { size: BEAD, dpr: state.dpr, theme: "dark" };
+  paintCore(BEAD);
+  // the veil canvas carries only the breathing halo and event rings
+  const ctx = veilCanvas.getContext("2d");
+  return spec;
+}
+
+/* Renderer switch. `legacy` is paintBead, unchanged; `aperture` is the A2-Signature
+   experiment. Both receive the same token-derived spec, so no business state is
+   decided here - only how it is drawn. */
+function tierFor(levelOrFamilies) {
+  const lv = typeof levelOrFamilies === "number" ? levelOrFamilies : null;
+  if (lv !== null) return Math.min(1, lv / 7);
+  const map = { DORMANT: 0.10, FAINT: 0.26, GROWING: 0.48, BLAZING: 0.70, DEEP: 0.90 };
+  return map[state.level] !== undefined ? map[state.level] : 0.10;
+}
+
+function paintCore(size) {
+  CORE_PAINTS++;
+  const spec = specOf(state.level);
+  if (STYLE === "legacy" || !window.Aperture) {
+    window.InkLight.paintBead(coreCanvas, spec, tokens, { size, dpr: state.dpr, theme: "dark" });
+    return;
+  }
+  const ctx = coreCanvas.getContext("2d");
+  ctx.save();
+  ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+  // clearing only size×size leaves the previous, larger symbol on the canvas
+  ctx.clearRect(0, 0, CANVAS, CANVAS);
+  const pad = Math.max(0, (CANVAS - size) / 2);
+  ctx.translate(pad, pad);
+  window.Aperture.paintCompensated(ctx, size, tierFor(state.level), 1.0, RIM,
+    { variant: STYLE === "original" ? "original" : STYLE === "organic" ? "organic" : "signature", material: MATERIAL });
+  ctx.restore();
+}
+
+function resize() {
+  state.dpr = Math.min(window.devicePixelRatio || 1, 2);
+  for (const c of [veilCanvas, coreCanvas]) {
+    c.width = Math.round(CANVAS * state.dpr);
+    c.height = Math.round(CANVAS * state.dpr);
+    c.style.width = CANVAS + "px";
+    c.style.height = CANVAS + "px";
+    c.getContext("2d").setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+  }
+  build(state.level);
+}
+
+function applyMotion() {
+  if (!tokens) return;
+  const b = (tokens.motion && tokens.motion.breath) || { periodMs: 6400, amplitude: 0.035 };
+  document.documentElement.style.setProperty("--breath-ms", Math.round(state.breathMs) + "ms");
+  document.documentElement.style.setProperty("--veil-min", String(1 - (b.amplitude || 0.035)));
+  document.documentElement.style.setProperty("--float-amp", ((tokens.motion.float || {}).amplitudePx || 1) + "px");
+  document.documentElement.style.setProperty("--float-ms", ((tokens.motion.float || {}).periodMs || 16000) + "ms");
+  if (motionOff()) {
+    veilCanvas.classList.remove("breathe"); stage.classList.remove("float");
+    veilCanvas.style.opacity = "1";
+  } else {
+    veilCanvas.classList.add("breathe"); stage.classList.add("float");
+    veilCanvas.style.opacity = "";
+  }
+}
+
+const FRAME = 1000 / 30; let lastDraw = 0;
+function draw(now) {
+  DRAW_CALLS++;
+  if (now - lastDraw < FRAME) return;
+  lastDraw = now;
+  const ctx = veilCanvas.getContext("2d");
+  ctx.clearRect(0, 0, CANVAS, CANVAS);
+  if (motionOff()) return;
+  const cx = CANVAS / 2, cy = CANVAS / 2;
+  ctx.globalCompositeOperation = "lighter";
+  if (transferPhase === "waiting") {
+    const spin = ((now - waitingSince) / 12000) * Math.PI * 2;
+    const spec = specOf(state.level);
+    for (let k = 0; k < 3; k++) {
+      ctx.strokeStyle = window.InkLight.rgba(spec.halo, 0.18 * (1 - k * 0.25));
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 34, spin + k * 2.09, spin + k * 2.09 + 1.0);
+      ctx.stroke();
+    }
+  }
+  for (let i = motes.length - 1; i >= 0; i--) {
+    const m = motes[i], q = (now - m.start) / m.duration;
+    if (q >= 1) { motes.splice(i, 1); continue; }
+    const e = q * q * (3 - 2 * q);
+    const x = m.x0 + (m.x1 - m.x0) * e;
+    const y = m.y0 + (m.y1 - m.y0) * e - Math.sin(e * Math.PI) * 14;
+    ctx.fillStyle = "rgba(255,214,186," + (0.9 * (1 - q * 0.5)).toFixed(3) + ")";
+    ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill();
+  }
+  for (let i = rings.length - 1; i >= 0; i--) {
+    const g = rings[i], q = (now - g.start) / g.duration;
+    if (q >= 1) { rings.splice(i, 1); continue; }
+    const e = 1 - Math.pow(1 - q, 1.9);
+    ctx.strokeStyle = window.InkLight.rgba(g.hue, g.alpha * Math.pow(1 - q, 1.9));
+    ctx.lineWidth = Math.max(0.6, 1.1 * (1 - 0.5 * q));
+    ctx.beginPath(); ctx.arc(cx, cy, g.r0 + (g.r1 - g.r0) * e, 0, Math.PI * 2); ctx.stroke();
+  }
+  ctx.globalCompositeOperation = "source-over";
+}
+
+let running = false;
+let DRAW_CALLS = 0, CORE_PAINTS = 0, RAF_CALLS = 0;
+function tick(now) {
+  RAF_CALLS++;
+  if (!running) return;
+  draw(now);
+  const busy = rings.length || motes.length ||
+    (!motionOff() && (transferPhase === "waiting" || transferPhase === "received" || transferPhase === "learning"));
+  if (!busy || motionOff()) { running = false; draw(now); return; }
+  requestAnimationFrame(tick);
+}
+function schedule() { if (running || motionOff()) return; running = true; requestAnimationFrame(tick); }
+
+function ring(kind) {
+  if (motionOff()) return;
+  const spec = specOf(state.level), now = performance.now();
+  const cfg = (tokens.motion || {}).transfer || {};
+  if (kind === "transfer_received") rings.push({ start: now, duration: 1200, r0: 20, r1: 44, alpha: 0.30, hue: spec.halo });
+  else if (kind === "transfer_activated") rings.push({ start: now, duration: 1600, r0: 12, r1: 52, alpha: 0.42, hue: spec.halo });
+  else if (kind === "transfer_echo") rings.push({ start: now, duration: 1800, r0: 24, r1: 58, alpha: 0.34, hue: spec.halo });
+  else if (kind === "ignition") rings.push({ start: now, duration: 1200, r0: 8, r1: 40, alpha: 0.5, hue: spec.halo });
+  else if (kind === "far_pulse") rings.push({ start: now, duration: 1900, r0: 26, r1: 60, alpha: 0.3, hue: spec.halo });
+  schedule();
+}
+
+function ceremony(kind) {
+  const now = performance.now(), spec = specOf(state.level);
+  if (kind === "transfer_waiting") { transferPhase = "waiting"; waitingSince = now; stage.classList.add("pulse"); setTimeout(() => stage.classList.remove("pulse"), 900); }
+  else if (kind === "transfer_received") { transferPhase = "received"; ring(kind); }
+  else if (kind === "transfer_confirmed") {
+    transferPhase = "learning";
+    const c = CANVAS / 2;
+    motes.push({ start: now, duration: 2200, x0: c, y0: c, x1: c + 34, y1: c });
+  } else if (kind === "transfer_activated") { transferPhase = "activated"; ring(kind); }
+  else if (kind === "transfer_echo") { transferPhase = "acknowledged"; ring(kind); }
+  else if (kind === "transfer_failed") { transferPhase = "failed"; }
+  schedule();
+}
+
+function setLevel(level, animate) {
+  if (level === state.level) return;
+  try { build(level); } catch (e) { window.__flLastError = String(e); }
+  applyMotion(); schedule();
+}
+
+// ---- interaction ------------------------------------------------------
+const DRAG = 4; let down = null, lastAction = 0;
+function startDrag() {
+  try { const w = TAURI.window.getCurrentWindow(); if (w.startDragging) return w.startDragging(); } catch (_) {}
+  invoke("plugin:window|start_dragging", { label: "lightpoint" }).catch(() => {});
+}
+stage.addEventListener("pointerdown", (e) => {
+  if (e.button !== 0 || clickThrough || down) return;
+  down = { x: e.screenX, y: e.screenY, moved: false, t: Date.now() };
+});
+stage.addEventListener("pointermove", (e) => {
+  if (!down || down.moved || clickThrough) return;
+  if (Math.hypot(e.screenX - down.x, e.screenY - down.y) > DRAG) {
+    down.moved = true; stage.classList.add("dragging"); startDrag();
+  }
+});
+function finish(e) {
+  const now = Date.now();
+  if (now - lastAction < 380) return;
+  if (!down) {
+    // A release with no press: the first click on a non-activating window can
+    // arrive this way. It may only open the panel — never a scan, a transfer
+    // confirmation or an identity change.
+    if (clickThrough) return;
+    if (e && typeof e.clientX === "number" &&
+        (e.clientX < 0 || e.clientY < 0 || e.clientX > innerWidth || e.clientY > innerHeight)) return;
+    lastAction = now; invoke("open_panel", {}).catch(() => {}); return;
+  }
+  const click = !down.moved && now - down.t < 380;
+  down = null; stage.classList.remove("dragging");
+  if (click) { lastAction = now; invoke("open_panel", {}).catch(() => {}); return; }
+  try { TAURI.window.getCurrentWindow().outerPosition().then((p) =>
+    invoke("save_position", { x: Math.round(p.x), y: Math.round(p.y) })); } catch (_) {}
+}
+window.addEventListener("pointerup", finish);
+window.addEventListener("blur", () => { down = null; stage.classList.remove("dragging"); });
+
+// ---- test hooks -------------------------------------------------------
+/* Test hook: repaint the live symbol at another size so the desktop capture can
+   show 24px and 44px in the real window, not only in a preview buffer. */
+window.__flSetSize = (n) => { paintCore(n); return n; };
+window.__flPreview = (level, size) => {
+  const spec = specOf(level);
+  const px = size || BEAD;
+  const c = document.createElement("canvas");
+  c.width = px * 2; c.height = px * 2;
+  if (STYLE === "legacy" || !window.Aperture) {
+    window.InkLight.paintBead(c, spec, tokens, { size: px, dpr: 2, theme: "dark" });
+    return { bead: c.toDataURL("image/png"), style: "legacy" };
+  }
+  const ctx = c.getContext("2d");
+  ctx.setTransform(2, 0, 0, 2, 0, 0);
+  window.Aperture.paintCompensated(ctx, px, tierFor(level), 1.0, RIM,
+    { variant: STYLE === "original" ? "original" : STYLE === "organic" ? "organic" : "signature", material: MATERIAL });
+  return { bead: c.toDataURL("image/png"), style: STYLE, material: MATERIAL, tier: tierFor(level), px };
+};
+window.__flProbe = () => {
+  if (!tokens) return { ready: false };
+  return {
+    ready: true, level: state.level, canvasPx: CANVAS, beadPx: BEAD,
+    coreHex: specOf(state.level).core, tokensVersion: tokens.version,
+    layerModel: STYLE === "legacy" ? "bead" : "aperture:" + STYLE, breathMs: Math.round(state.breathMs),
+    quiet, motionDisabled: motionOff(), loopRunning: running,
+    lightStyle: STYLE, rim: RIM, material: MATERIAL, lastError: window.__flLastError,
+    counters: { draw: DRAW_CALLS, corePaint: CORE_PAINTS, raf: RAF_CALLS },
+    png: window.__flWantPng ? (() => { window.__flWantPng = false; return window.__flPreview(state.level, window.__flSize || BEAD); })() : null,
+  };
+};
+
+async function loadStyle() {
+  try { const r = await invoke("light_style"); if (r) { STYLE = r.style || "legacy"; RIM = r.rim || "8%"; MATERIAL = r.material || "base"; } } catch (_) {}
+}
+
+async function boot() {
+  await loadStyle();
+  try { tokens = JSON.parse(await invoke("get_visual_tokens")); }
+  catch (e) { window.__flLastError = "tokens unavailable"; return; }
+  resize(); applyMotion(); draw(performance.now()); schedule();
+  try {
+    const s = await invoke("light_status");
+    if (s) { light = s; quiet = !!s.quiet_mode; }
+  } catch (_) {}
+  setLevel(light.level || "DORMANT", false);
+  listen("light-updated", (e) => {
+    const n = e.payload || {}; light = n; quiet = !!n.quiet_mode;
+    if (n.level) setLevel(n.level, true);
+    applyMotion(); draw(performance.now()); schedule();
+  });
+  listen("light-event", (e) => {
+    const k = (e.payload || {}).kind || "";
+    if (k.startsWith("transfer_")) ceremony(k); else ring(k);
+  });
+  listen("quiet-mode-changed", (e) => { quiet = !!e.payload; applyMotion(); draw(performance.now()); });
+  listen("click-through-changed", (e) => { clickThrough = !!e.payload; });
+}
+boot();
+</script>
+</body>
+</html>

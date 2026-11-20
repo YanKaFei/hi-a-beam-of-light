@@ -1,0 +1,14 @@
+[package]
+name = "light-store"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Local SQLite store and migrations. Local-first: the app is fully usable with this and nothing else."
+
+[dependencies]
+light-core = { path = "../light-core" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+rusqlite.workspace = true

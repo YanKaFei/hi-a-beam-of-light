@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "session_version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "usage_event_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "usage_event_id",
+    "session_version"
+  ],
+  "title": "TransmissionActivateRequest",
+  "type": "object"
+}

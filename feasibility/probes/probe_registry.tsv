@@ -1,0 +1,10 @@
+# model_string (as recorded by client)	expected_family	note
+gpt-6-sol	gpt	versioned family member
+gpt-5.6-sol	gpt	versioned family member
+gpt-5.6-terra	gpt	codename variant
+gpt-6.1-sol	gpt	minor version variant
+gpt-6-astra	gpt	codename variant
+chatgpt-web/gpt-6-sol	gpt	provider prefix embedded in model string
+chatgpt-web/gpt-5.6-sol	gpt	provider prefix embedded in model string
+codex-auto-review	UNKNOWN	task label, NOT a model family
+	UNKNOWN	empty string, must not count

@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "SessionState": {
+      "enum": [
+        "CREATED",
+        "OFFERED",
+        "RECEIVED",
+        "ACCEPTED",
+        "LEARNING",
+        "ACTIVATED",
+        "ACKNOWLEDGED",
+        "CANCELLED",
+        "EXPIRED",
+        "REJECTED",
+        "REVOKED"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "expires_at_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "id": {
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/$defs/SessionState"
+    },
+    "version": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "state",
+    "version",
+    "expires_at_ms"
+  ],
+  "title": "TransmissionStateResponse",
+  "type": "object"
+}

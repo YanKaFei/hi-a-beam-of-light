@@ -1,0 +1,63 @@
+<view class="stage" style="padding-top:{{statusBarHeight}}px">
+  <!-- brand -->
+  <view class="brand">FIRST LIGHT</view>
+
+  <!-- light -->
+  <view class="light-wrap">
+    <image class="align-base" wx:if="{{alignTest}}" src="/assets/base-r52-align.png" mode="scaleToFill"
+           style="width:{{frameW}}px;height:{{frameH}}px"></image>
+    <image class="light-base" wx:if="{{lightBase}}" src="{{lightBase}}" mode="aspectFit"></image>
+    <canvas id="light" type="2d" class="light"></canvas>
+  </view>
+
+  <!-- the one action -->
+  <view class="call" bindtap="onTapLight">
+    <text class="call-title">我的光</text>
+    <text class="call-hint">{{observing ? '正在检查…' : '轻触查看我的光'}}</text>
+  </view>
+
+  <!-- one line of truth -->
+  <view class="status" wx:if="{{!observing}}">
+    <text class="status-text">{{title}}</text>
+    <text class="status-sub">{{statusLine}}</text>
+  </view>
+
+  <!-- observation narrative -->
+  <view class="narrative" wx:if="{{observing || narrative.length}}">
+    <view wx:for="{{narrative}}" wx:key="index" class="line {{item.tone}}">{{item.text}}</view>
+    <view class="cancel" wx:if="{{observing}}" catchtap="cancelObserve">取消</view>
+  </view>
+
+  <!-- result actions -->
+  <view class="actions" wx:if="{{result && !observing}}">
+    <view class="act" wx:if="{{result.kind === 'empty'}}" bindtap="goPair">连接你的第一台设备</view>
+    <view class="act" wx:if="{{result.kind === 'observed' || result.kind === 'idle'}}" bindtap="toggleDetail">查看观察详情</view>
+    <view class="act quiet" wx:if="{{result.kind === 'error'}}" bindtap="onTapLight">重试</view>
+  </view>
+
+  <!-- detail: technical truth stays available, one layer down -->
+  <view class="detail" wx:if="{{showDetail}}">
+    <view class="drow"><text class="dk">设备</text><text class="dv">{{deviceLabel || '未连接'}}</text></view>
+    <view class="drow"><text class="dk">观察</text><text class="dv">{{observations.length}} 条</text></view>
+    <view class="drow" wx:if="{{observations.length}}"><text class="dk">最新来源</text><text class="dv">{{observations[0].source_class}}</text></view>
+    <view class="drow" wx:if="{{observations.length}}"><text class="dk">签名</text><text class="dv">{{observations[0].signature_status}}</text></view>
+    <view class="note">签名只证明记录由设备签发；独立核验需要服务端来源政策确认。当前插件记录不满足该条件。</view>
+  </view>
+
+  <!-- secondary, text only -->
+  <view class="more">
+    <text class="more-link" bindtap="goTransfer">传光</text>
+    <text class="more-dot">·</text>
+    <text class="more-link" bindtap="goEcho">回响</text>
+    <text class="more-dot">·</text>
+    <text class="more-link" bindtap="goMore">更多</text>
+  </view>
+</view>
+
+<!-- brand sequence -->
+<view class="intro {{introStage === 'reveal' ? 'fading' : ''}}" wx:if="{{showIntro}}">
+  <canvas id="intro" type="2d" class="intro-canvas" wx:if="{{showIntro}}"></canvas>
+  <view class="opening-copy {{introKind}}" style="opacity:{{introOpacity}}">{{introCopy}}</view>
+  <view class="opening-brand">FIRST LIGHT</view>
+  <view class="intro-skip" style="margin-top:{{statusBarHeight}}px" wx:if="{{skipVisible}}" catchtap="skipIntro">跳过</view>
+</view>

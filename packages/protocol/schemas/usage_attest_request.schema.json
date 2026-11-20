@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "EvidenceLevel": {
+      "description": "Evidence level, per product spec §5.3.",
+      "oneOf": [
+        {
+          "const": "E0",
+          "description": "Detected: an app, CLI, config path, or service exists.",
+          "type": "string"
+        },
+        {
+          "const": "E1",
+          "description": "Connected: a legal connection/login exists.",
+          "type": "string"
+        },
+        {
+          "const": "E2",
+          "description": "Self-attested: the user ticked \"I have used this\". Display only.",
+          "type": "string"
+        },
+        {
+          "const": "E3",
+          "description": "Locally verifiable: an authorized adapter emitted a validated usage event.",
+          "type": "string"
+        },
+        {
+          "const": "E4",
+          "description": "Supported call receipt: an authorized integration returned a success proof.",
+          "type": "string"
+        }
+      ]
+    },
+    "ProofMethod": {
+      "description": "How a countable evidence record was obtained.",
+      "oneOf": [
+        {
+          "const": "local_sqlite_metadata",
+          "description": "Read-only metadata from a local client database through a column allowlist.",
+          "type": "string"
+        },
+        {
+          "const": "client_receipt_api",
+          "description": "A signed receipt returned by an authorized integration.",
+          "type": "string"
+        },
+        {
+          "const": "hook_callback",
+          "description": "A user-installed hook reported a completed call.",
+          "type": "string"
+        },
+        {
+          "const": "signed_adapter_report",
+          "description": "A third-party adapter report carrying its own signature.",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_id": {
+      "type": "string"
+    },
+    "adapter_version": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "level": {
+      "$ref": "#/$defs/EvidenceLevel"
+    },
+    "observed_at_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "proof_method": {
+      "$ref": "#/$defs/ProofMethod"
+    },
+    "registry_semver": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "family",
+    "level",
+    "proof_method",
+    "adapter_id",
+    "adapter_version",
+    "registry_semver",
+    "observed_at_ms"
+  ],
+  "title": "UsageAttestRequest",
+  "type": "object"
+}

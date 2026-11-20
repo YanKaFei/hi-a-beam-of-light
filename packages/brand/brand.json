@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "note": "Single source of truth for every user-visible brand string and URL prefix. The internal codename stays `firstlight`; the public name is provisional and must be replaceable without touching identity, data, or transmission history.",
+
+  "internal": {
+    "codename": "firstlight",
+    "bundleId": "invalid.example.firstlight"
+  },
+
+  "public": {
+    "nameZh": "第一束光",
+    "nameEn": "First Light",
+    "status": "provisional",
+    "note": "Trademark and domain screening has not been done. Nothing may depend on this value being final."
+  },
+
+  "taglines": {
+    "manifesto": "光不因分享而减少。",
+    "invitation": "把一束光传给别人。",
+    "echo": "你曾经传出的光，今天又亮了。",
+    "vision": "一个人开始，更多人发生。",
+    "principle": "光是能力的象征，不是人的价值评分。"
+  },
+
+  "ui": {
+    "appTitle": "我的光",
+    "trayTooltip": "第一束光",
+    "receivePageTitle": "你收到了一束光"
+  },
+
+  "urls": {
+    "note": "Paths are stable; only the host changes per environment. Never treat localhost as a public domain.",
+    "receivePathTemplate": "/t/{token}",
+    "nfcEntryPath": "/n/{tagId}",
+    "fieldPath": "/field"
+  },
+
+  "nfc": {
+    "note": "A tag stores only a public HTTPS entry URL and a public tag id. Never a credential.",
+    "ndefRecordType": "https",
+    "maxUrlBytes": 128
+  }
+}

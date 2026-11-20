@@ -1,0 +1,70 @@
+{
+  "$defs": {
+    "FieldMetric": {
+      "additionalProperties": false,
+      "description": "One public metric. Every metric carries its own window and note, so the three\nquantities can never be silently merged into a single \"total\" (spec §8.2).",
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "value": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "window": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "window",
+        "note"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cache_seconds": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "generated_at_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "helper_nodes": {
+      "$ref": "#/$defs/FieldMetric",
+      "description": "Nodes that helped at least one other node activate."
+    },
+    "methodology_url": {
+      "type": "string"
+    },
+    "new_activations": {
+      "$ref": "#/$defs/FieldMetric",
+      "description": "New receiver activations in the window."
+    },
+    "online_instances": {
+      "$ref": "#/$defs/FieldMetric",
+      "description": "Short-window online instances. Not a number of people."
+    },
+    "total_activated_nodes": {
+      "$ref": "#/$defs/FieldMetric",
+      "description": "Nodes that consented and have at least one verified activation."
+    }
+  },
+  "required": [
+    "generated_at_ms",
+    "cache_seconds",
+    "total_activated_nodes",
+    "online_instances",
+    "new_activations",
+    "helper_nodes",
+    "methodology_url"
+  ],
+  "title": "FieldSummary",
+  "type": "object"
+}

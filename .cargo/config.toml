@@ -1,0 +1,11 @@
+# crates.io is unreachable from this development network (verified in F0).
+# Rust builds therefore go through a mirror. Remove this file if your network
+# can reach crates.io directly, or point it at your own mirror.
+[source.crates-io]
+replace-with = "rsproxy-sparse"
+
+[source.rsproxy-sparse]
+registry = "sparse+https://rsproxy.cn/index/"
+
+[net]
+git-fetch-with-cli = true

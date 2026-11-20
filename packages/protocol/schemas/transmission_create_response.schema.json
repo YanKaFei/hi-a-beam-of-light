@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "expires_at_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "id": {
+      "type": "string"
+    },
+    "nfc_payload": {
+      "description": "String to write to an NDEF tag: a public HTTPS URL, nothing else.",
+      "type": "string"
+    },
+    "receive_url": {
+      "type": "string"
+    },
+    "token": {
+      "description": "Returned exactly once. The server stores only a hash.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "token",
+    "receive_url",
+    "nfc_payload",
+    "expires_at_ms"
+  ],
+  "title": "TransmissionCreateResponse",
+  "type": "object"
+}

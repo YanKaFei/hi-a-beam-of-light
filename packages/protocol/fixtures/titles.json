@@ -1,0 +1,201 @@
+{
+  "knowledge": [
+    {
+      "families": 0,
+      "slug": "seeker",
+      "zh": "寻光者"
+    },
+    {
+      "families": 1,
+      "slug": "first_light",
+      "zh": "初明者"
+    },
+    {
+      "families": 2,
+      "slug": "enlightener",
+      "zh": "启迪者"
+    },
+    {
+      "families": 3,
+      "slug": "enlightener",
+      "zh": "启迪者"
+    },
+    {
+      "families": 4,
+      "slug": "explorer",
+      "zh": "探索者"
+    },
+    {
+      "families": 5,
+      "slug": "explorer",
+      "zh": "探索者"
+    },
+    {
+      "families": 6,
+      "slug": "explorer",
+      "zh": "探索者"
+    },
+    {
+      "families": 7,
+      "slug": "frontier",
+      "zh": "拓界者"
+    },
+    {
+      "families": 8,
+      "slug": "frontier",
+      "zh": "拓界者"
+    },
+    {
+      "families": 9,
+      "slug": "frontier",
+      "zh": "拓界者"
+    },
+    {
+      "families": 10,
+      "slug": "frontier",
+      "zh": "拓界者"
+    },
+    {
+      "families": 11,
+      "slug": "frontier",
+      "zh": "拓界者"
+    },
+    {
+      "families": 12,
+      "slug": "frontier",
+      "zh": "拓界者"
+    }
+  ],
+  "levels": [
+    {
+      "families": 0,
+      "level": "DORMANT"
+    },
+    {
+      "families": 1,
+      "level": "FAINT"
+    },
+    {
+      "families": 2,
+      "level": "GROWING"
+    },
+    {
+      "families": 3,
+      "level": "GROWING"
+    },
+    {
+      "families": 4,
+      "level": "BLAZING"
+    },
+    {
+      "families": 5,
+      "level": "BLAZING"
+    },
+    {
+      "families": 6,
+      "level": "BLAZING"
+    },
+    {
+      "families": 7,
+      "level": "DEEP"
+    },
+    {
+      "families": 8,
+      "level": "DEEP"
+    },
+    {
+      "families": 9,
+      "level": "DEEP"
+    },
+    {
+      "families": 10,
+      "level": "DEEP"
+    },
+    {
+      "families": 11,
+      "level": "DEEP"
+    },
+    {
+      "families": 12,
+      "level": "DEEP"
+    }
+  ],
+  "note": "Single source of truth for both title ladders. A tier applies when value >= threshold.",
+  "transmission": [
+    {
+      "nodes": 0,
+      "slug": "holder",
+      "zh": "持光者"
+    },
+    {
+      "nodes": 1,
+      "slug": "kindler",
+      "zh": "启蒙者"
+    },
+    {
+      "nodes": 2,
+      "slug": "kindler",
+      "zh": "启蒙者"
+    },
+    {
+      "nodes": 3,
+      "slug": "guide",
+      "zh": "引光者"
+    },
+    {
+      "nodes": 4,
+      "slug": "guide",
+      "zh": "引光者"
+    },
+    {
+      "nodes": 9,
+      "slug": "guide",
+      "zh": "引光者"
+    },
+    {
+      "nodes": 10,
+      "slug": "sower",
+      "zh": "播光者"
+    },
+    {
+      "nodes": 11,
+      "slug": "sower",
+      "zh": "播光者"
+    },
+    {
+      "nodes": 29,
+      "slug": "sower",
+      "zh": "播光者"
+    },
+    {
+      "nodes": 30,
+      "slug": "lamp_bearer",
+      "zh": "传灯者"
+    },
+    {
+      "nodes": 31,
+      "slug": "lamp_bearer",
+      "zh": "传灯者"
+    },
+    {
+      "nodes": 99,
+      "slug": "lamp_bearer",
+      "zh": "传灯者"
+    },
+    {
+      "nodes": 100,
+      "slug": "wildfire",
+      "zh": "燎原者"
+    },
+    {
+      "nodes": 101,
+      "slug": "wildfire",
+      "zh": "燎原者"
+    },
+    {
+      "nodes": 500,
+      "slug": "wildfire",
+      "zh": "燎原者"
+    }
+  ]
+}

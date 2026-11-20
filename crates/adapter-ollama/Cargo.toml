@@ -1,0 +1,15 @@
+[package]
+name = "adapter-ollama"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Ollama adapter: detects the local service and turns a user-initiated inference into a signed receipt."
+
+[dependencies]
+light-store = { path = "../light-store" }
+light-core = { path = "../light-core" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+sha2.workspace = true

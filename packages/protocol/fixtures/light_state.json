@@ -1,0 +1,104 @@
+{
+  "cases": [
+    {
+      "activated_nodes": 0,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "seeker",
+        "level": "DORMANT",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 0
+    },
+    {
+      "activated_nodes": 0,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "first_light",
+        "level": "FAINT",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 1
+    },
+    {
+      "activated_nodes": 0,
+      "attested_families": 5,
+      "expected": {
+        "knowledge_title": "first_light",
+        "level": "FAINT",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 1
+    },
+    {
+      "activated_nodes": 0,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "enlightener",
+        "level": "GROWING",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 2
+    },
+    {
+      "activated_nodes": 1,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "enlightener",
+        "level": "GROWING",
+        "transmission_title": "kindler"
+      },
+      "received_glow": 0,
+      "verified_families": 3
+    },
+    {
+      "activated_nodes": 0,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "explorer",
+        "level": "BLAZING",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 4
+    },
+    {
+      "activated_nodes": 3,
+      "attested_families": 2,
+      "expected": {
+        "knowledge_title": "explorer",
+        "level": "BLAZING",
+        "transmission_title": "guide"
+      },
+      "received_glow": 10,
+      "verified_families": 6
+    },
+    {
+      "activated_nodes": 0,
+      "attested_families": 0,
+      "expected": {
+        "knowledge_title": "frontier",
+        "level": "DEEP",
+        "transmission_title": "holder"
+      },
+      "received_glow": 0,
+      "verified_families": 7
+    },
+    {
+      "activated_nodes": 100,
+      "attested_families": 9,
+      "expected": {
+        "knowledge_title": "frontier",
+        "level": "DEEP",
+        "transmission_title": "wildfire"
+      },
+      "received_glow": 99,
+      "verified_families": 9
+    }
+  ],
+  "note": "attested_families (E2) and received_glow must never change level or knowledge_title."
+}

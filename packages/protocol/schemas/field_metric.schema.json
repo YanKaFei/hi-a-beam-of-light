@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One public metric. Every metric carries its own window and note, so the three\nquantities can never be silently merged into a single \"total\" (spec §8.2).",
+  "properties": {
+    "note": {
+      "type": "string"
+    },
+    "value": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "window": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "value",
+    "window",
+    "note"
+  ],
+  "title": "FieldMetric",
+  "type": "object"
+}

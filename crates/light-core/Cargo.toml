@@ -1,0 +1,18 @@
+[package]
+name = "light-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Platform-neutral FirstLight core: identity, evidence, light state, titles, transmission FSM."
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+ed25519-dalek.workspace = true
+rand_core.workspace = true
+sha2.workspace = true
+schemars.workspace = true
+
+[dev-dependencies]

@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "Channel": {
+      "enum": [
+        "qr",
+        "nfc",
+        "link",
+        "nearby"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "channel": {
+      "$ref": "#/$defs/Channel"
+    },
+    "ttl_seconds": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "channel",
+    "ttl_seconds"
+  ],
+  "title": "TransmissionCreateRequest",
+  "type": "object"
+}

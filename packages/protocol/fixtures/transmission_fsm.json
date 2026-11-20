@@ -1,0 +1,2295 @@
+{
+  "cases": [
+    {
+      "effects": [],
+      "error": null,
+      "event": "OFFER",
+      "evidence": false,
+      "from": "CREATED",
+      "next": "OFFERED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "OFFER",
+      "evidence": true,
+      "from": "CREATED",
+      "next": "OFFERED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "CREATED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "CREATED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "CREATED",
+      "next": "CANCELLED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "CREATED",
+      "next": "CANCELLED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "CREATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "OPEN",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": "RECEIVED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "OPEN",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": "RECEIVED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": "CANCELLED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": "CANCELLED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "OFFERED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "EdgeFormed",
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": "LEARNING",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeFormed",
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": "LEARNING",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeFormed",
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": "LEARNING",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeFormed",
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": "LEARNING",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "REJECT",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": "REJECTED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "REJECT",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": "REJECTED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "TokenInvalidated"
+      ],
+      "error": null,
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": "EXPIRED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "RECEIVED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": "ACCEPTED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": "ACCEPTED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": "ACCEPTED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": "ACCEPTED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "ACCEPTED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "ACCEPTED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": "LEARNING",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": "LEARNING",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": "LEARNING",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": "LEARNING",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "ActivationEvidenceMissing",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "EdgeActivated"
+      ],
+      "error": null,
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": "ACTIVATED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "LEARNING",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "LEARNING",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": "ACTIVATED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EchoQueued"
+      ],
+      "error": null,
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": "ACKNOWLEDGED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EchoQueued"
+      ],
+      "error": null,
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": "ACKNOWLEDGED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "ACTIVATED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "ACTIVATED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": null,
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": "ACKNOWLEDGED",
+      "replayed": true,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "ACKNOWLEDGED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [
+        "EdgeRevoked"
+      ],
+      "error": null,
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "ACKNOWLEDGED",
+      "next": "REVOKED",
+      "replayed": false,
+      "result": "ok"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "CANCELLED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "EXPIRED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "REJECTED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OFFER",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "OPEN",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACCEPT",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CONFIRM",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REJECT",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "EXPIRE",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "CANCEL",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACTIVATE",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "ACKNOWLEDGE",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": false,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    },
+    {
+      "effects": [],
+      "error": "IllegalTransition",
+      "event": "REVOKE",
+      "evidence": true,
+      "from": "REVOKED",
+      "next": null,
+      "replayed": false,
+      "result": "error"
+    }
+  ],
+  "effects": [
+    "TokenInvalidated",
+    "EdgeFormed",
+    "EdgeActivated",
+    "EchoQueued",
+    "EdgeRevoked"
+  ],
+  "events": [
+    "OFFER",
+    "OPEN",
+    "ACCEPT",
+    "CONFIRM",
+    "REJECT",
+    "EXPIRE",
+    "CANCEL",
+    "ACTIVATE",
+    "ACKNOWLEDGE",
+    "REVOKE"
+  ],
+  "note": "Authoritative transition table. The server ports this machine verbatim; drift fails tests on both sides.",
+  "states": [
+    "CREATED",
+    "OFFERED",
+    "RECEIVED",
+    "ACCEPTED",
+    "LEARNING",
+    "ACTIVATED",
+    "ACKNOWLEDGED",
+    "CANCELLED",
+    "EXPIRED",
+    "REJECTED",
+    "REVOKED"
+  ]
+}

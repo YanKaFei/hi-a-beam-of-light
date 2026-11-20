@@ -1,0 +1,36 @@
+[package]
+name = "firstlight-desktop"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "Apache-2.0"
+description = "FirstLight desktop client: the floating light point and the personal light interface."
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png", "macos-private-api"] }
+serde = { version = "1", features = ["derive"] }
+thiserror.workspace = true
+sha2.workspace = true
+ed25519-dalek.workspace = true
+serde_json = "1"
+light-core = { path = "../../../crates/light-core" }
+light-store = { path = "../../../crates/light-store" }
+adapter-codex = { path = "../../../crates/adapter-codex" }
+adapter-sdk = { path = "../../../crates/adapter-sdk" }
+
+[features]
+# The automation control channel is a test surface, not a product feature. It is
+# compiled out of release builds and only enabled for `--features test-control`.
+default = []
+test-control = []
+# Development only: present the panel as an activating window so it can be
+# captured reliably. Never enabled in release.
+shot-mode = []
+
+[target.'cfg(target_os = "macos")'.dependencies]
+security-framework = "3"
+objc2 = { version = "0.6", features = ["exception"] }
+objc2-app-kit = { version = "0.3", features = ["NSApplication", "NSWindow", "NSResponder", "NSRunningApplication"] }

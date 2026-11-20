@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>一束光 · 疗愈界面设计稿</title>
+    <link rel="stylesheet" href="healing.css" />
+  </head>
+  <body data-lang="zh">
+    <div class="gallery-wrap">
+      <!-- ================= HERO ================= -->
+      <section class="frame hero-frame" id="frame-hero">
+        <div class="hero-board paper">
+          <div class="hero-copy">
+            <div class="hero-chips">
+              <span class="chip" data-t="hero.chip1"></span>
+              <span class="chip" data-t="hero.chip2"></span>
+              <span class="chip" data-t="hero.chip3"></span>
+            </div>
+            <h1 class="hero-title" data-t="hero.title"></h1>
+            <p class="hero-sub" data-t="hero.sub"></p>
+            <div class="hero-meta">
+              <b>hi, a beam of light</b>
+              <span>·</span>
+              <span>Rust · Tauri · Node</span>
+              <span>·</span>
+              <span>DeepSeek</span>
+            </div>
+          </div>
+          <div class="hero-orb">
+            <div class="halo-line"></div>
+            <div class="orb" style="--size: 560px">
+              <span class="orb-halo"></span>
+              <span class="orb-ink"></span>
+              <span class="orb-mist"></span>
+              <span class="orb-arc a1"></span>
+              <span class="orb-arc a2"></span>
+              <span class="orb-arc a3"></span>
+              <span class="orb-dots"></span>
+              <span class="orb-core"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HOME ================= -->
+      <section class="frame screen paper" id="frame-home">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" data-t="brand"></span>
+          <span class="aside" data-t="mode"></span>
+        </div>
+        <div class="home-hero">
+          <div class="orb-stage">
+            <div class="orb" style="--size: 300px">
+              <span class="orb-halo"></span>
+              <span class="orb-ink"></span>
+              <span class="orb-mist"></span>
+              <span class="orb-arc a1"></span>
+              <span class="orb-arc a2"></span>
+              <span class="orb-arc a3"></span>
+              <span class="orb-dots"></span>
+              <span class="orb-core"></span>
+            </div>
+            <span class="caption" data-t="home.caption"></span>
+          </div>
+          <h1 class="home-title" data-t="home.title"></h1>
+          <p class="home-sub" data-t="home.sub"></p>
+          <button class="cta">
+            <span data-t="home.cta"></span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <b>3</b>
+            <span data-t="home.s1"></span>
+          </div>
+          <div class="stat">
+            <b>2</b>
+            <span data-t="home.s2"></span>
+          </div>
+          <div class="stat">
+            <b>1</b>
+            <span data-t="home.s3"></span>
+          </div>
+        </div>
+        <p class="footnote" data-t="home.foot"></p>
+        <nav class="nav">
+          <a class="on" data-t="nav.0"></a>
+          <a data-t="nav.1"></a>
+          <a data-t="nav.2"></a>
+          <a data-t="nav.3"></a>
+        </nav>
+      </section>
+
+      <!-- ================= SCAN ================= -->
+      <section class="frame screen paper" id="frame-scan">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" data-t="brand"></span>
+          <span class="aside" data-t="mode"></span>
+        </div>
+        <div class="page-head">
+          <span class="eyebrow" data-t="scan.eyebrow"></span>
+          <h1 class="page-title" data-t="scan.title"></h1>
+          <p class="page-sub" data-t="scan.sub"></p>
+        </div>
+        <div class="scan-body">
+          <div class="consent">
+            <div><i></i><span data-t="scan.c1"></span></div>
+            <div><i></i><span data-t="scan.c2"></span></div>
+            <div><i></i><span data-t="scan.c3"></span></div>
+          </div>
+          <div class="heard">
+            <span class="heard-label" data-t="scan.heard"></span>
+            <div class="heard-row">
+              <span class="tiny-orb"></span>
+              <b>Codex</b>
+              <span class="meta" data-t="scan.item1"></span>
+            </div>
+            <div class="heard-row">
+              <span class="tiny-orb"></span>
+              <b>Ollama</b>
+              <span class="meta" data-t="scan.item2"></span>
+            </div>
+            <div class="heard-row">
+              <span class="tiny-orb" style="opacity: 0.35; box-shadow: none"></span>
+              <b data-t="scan.item3"></b>
+              <span class="meta" data-t="scan.item3m"></span>
+            </div>
+          </div>
+          <button class="cta" style="width: 100%; justify-content: center">
+            <span data-t="scan.cta"></span>
+          </button>
+          <p class="scan-note" data-t="scan.note"></p>
+          <div class="scan-spacer"></div>
+        </div>
+        <nav class="nav">
+          <a class="on" data-t="nav.0"></a>
+          <a data-t="nav.1"></a>
+          <a data-t="nav.2"></a>
+          <a data-t="nav.3"></a>
+        </nav>
+      </section>
+
+      <!-- ================= TRANSFER ================= -->
+      <section class="frame screen paper" id="frame-transfer">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" data-t="brand"></span>
+          <span class="aside" data-t="mode"></span>
+        </div>
+        <div class="page-head" style="text-align: center">
+          <span class="eyebrow" data-t="pass.eyebrow"></span>
+          <h1 class="page-title" data-t="pass.title"></h1>
+          <p class="page-sub" data-t="pass.sub"></p>
+        </div>
+        <div class="pass-card">
+          <div class="qr" id="qr"></div>
+          <div class="pass-code" data-t="pass.code"></div>
+        </div>
+        <div class="pass-status">
+          <span class="pulse"></span>
+          <span data-t="pass.status"></span>
+        </div>
+        <div class="pass-cancel" data-t="pass.cancel"></div>
+        <div style="flex: 1 1 auto"></div>
+        <p class="footnote" data-t="pass.note"></p>
+        <nav class="nav">
+          <a data-t="nav.0"></a>
+          <a class="on" data-t="nav.1"></a>
+          <a data-t="nav.2"></a>
+          <a data-t="nav.3"></a>
+        </nav>
+      </section>
+
+      <!-- ================= PATH ================= -->
+      <section class="frame screen paper" id="frame-path">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" data-t="brand"></span>
+          <span class="aside" data-t="mode"></span>
+        </div>
+        <div class="page-head">
+          <span class="eyebrow" data-t="path.eyebrow"></span>
+          <h1 class="page-title" data-t="path.title"></h1>
+        </div>
+        <div class="path-numbers">
+          <div>
+            <b>3</b>
+            <span data-t="path.n1"></span>
+          </div>
+          <div>
+            <b>2</b>
+            <span data-t="path.n2"></span>
+          </div>
+          <div>
+            <b>1</b>
+            <span data-t="path.n3"></span>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <b data-t="path.i1"></b>
+            <span data-t="path.t1"></span>
+          </div>
+          <div class="tl-item wait">
+            <b data-t="path.i2"></b>
+            <span data-t="path.t2"></span>
+          </div>
+          <div class="tl-item">
+            <b data-t="path.i3"></b>
+            <span data-t="path.t3"></span>
+          </div>
+          <div class="tl-item">
+            <b data-t="path.i4"></b>
+            <span data-t="path.t4"></span>
+          </div>
+        </div>
+        <div class="scan-spacer"></div>
+        <p class="footnote" data-t="path.note"></p>
+        <nav class="nav">
+          <a data-t="nav.0"></a>
+          <a data-t="nav.1"></a>
+          <a class="on" data-t="nav.2"></a>
+          <a data-t="nav.3"></a>
+        </nav>
+      </section>
+
+      <!-- ================= ECHO ================= -->
+      <section class="frame screen paper" id="frame-echo">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" data-t="brand"></span>
+          <span class="aside" data-t="mode"></span>
+        </div>
+        <div class="echo-stage">
+          <div class="echo-rings">
+            <span class="ring"></span>
+            <span class="ring"></span>
+            <span class="ring"></span>
+            <div class="orb" style="--size: 150px">
+              <span class="orb-halo"></span>
+              <span class="orb-ink"></span>
+              <span class="orb-mist"></span>
+              <span class="orb-core"></span>
+            </div>
+          </div>
+          <span class="eyebrow" data-t="echo.eyebrow"></span>
+          <h1 class="echo-line" data-t="echo.line"></h1>
+          <p class="echo-sub" data-t="echo.sub"></p>
+        </div>
+        <div class="echo-dates" data-t="echo.dates"></div>
+        <nav class="nav">
+          <a data-t="nav.0"></a>
+          <a data-t="nav.1"></a>
+          <a data-t="nav.2"></a>
+          <a class="on" data-t="nav.3"></a>
+        </nav>
+      </section>
+
+      <!-- ================= DARK MOMENT ================= -->
+      <section class="frame screen night" id="frame-moment">
+        <div class="brandbar">
+          <span class="mark"></span>
+          <span class="name" style="color: #f2e4d1" data-t="brand"></span>
+          <span class="aside" style="color: rgba(246,233,216,.45); border-color: rgba(246,233,216,.16)" data-t="moment.badge"></span>
+        </div>
+        <div class="moment-stage">
+          <div class="phone-ghost left"></div>
+          <div class="phone-ghost right"></div>
+          <div class="beam"></div>
+          <span class="beam-end"></span>
+          <span class="spark" style="left: 176px; top: 172px"></span>
+          <span class="spark" style="left: 214px; top: 158px; opacity: .55"></span>
+          <span class="spark" style="left: 246px; top: 140px; opacity: .35"></span>
+          <span class="spark" style="left: 268px; top: 128px; opacity: .22"></span>
+          <span class="spark" style="left: 300px; top: 300px; opacity: .18"></span>
+          <span class="spark" style="left: 96px; top: 344px; opacity: .14"></span>
+          <span class="spark" style="left: 210px; top: 380px; opacity: .1"></span>
+        </div>
+        <div class="moment-copy">
+          <span class="eyebrow" data-t="moment.eyebrow"></span>
+          <h1 class="moment-line" data-t="moment.line"></h1>
+          <p class="moment-sub" data-t="moment.sub"></p>
+          <span class="moment-done" data-t="moment.done"></span>
+        </div>
+      </section>
+
+      <!-- ================= LEVELS BOARD ================= -->
+      <section class="frame levels-frame" id="frame-levels">
+        <div class="levels-board paper">
+          <div class="levels-head">
+            <h2>Light, by count</h2>
+            <span class="eyebrow">one light · five depths</span>
+          </div>
+          <div class="levels" id="levels"></div>
+          <div class="palette">
+            <div class="swatch">
+              <i style="background: #f8f3ea"></i>
+              <span><b>Paper</b>#F8F3EA</span>
+            </div>
+            <div class="swatch">
+              <i style="background: #dfa96a"></i>
+              <span><b>Amber</b>#DFA96A</span>
+            </div>
+            <div class="swatch">
+              <i style="background: #d98e74"></i>
+              <span><b>Coral</b>#D98E74</span>
+            </div>
+            <div class="swatch">
+              <i style="background: #a8614a"></i>
+              <span><b>Ember</b>#A8614A</span>
+            </div>
+            <div class="swatch">
+              <i style="background: #9aab98"></i>
+              <span><b>Sage</b>#9AAB98</span>
+            </div>
+            <div class="swatch">
+              <i style="background: #2b2620"></i>
+              <span><b>Ink</b>#2B2620</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="healing.js"></script>
+  </body>
+</html>

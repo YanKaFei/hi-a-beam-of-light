@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Sent once at the head of a stream so the client knows the rules.",
+  "properties": {
+    "heartbeat_ms": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "identity_required_for_detail": {
+      "description": "Anonymous viewers get band-level data only.",
+      "type": "boolean"
+    },
+    "protocol_version": {
+      "type": "string"
+    },
+    "rate_limit_per_minute": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "replay_window_ms": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "resumed_from": {
+      "description": "Echo of the `Last-Event-ID` the client supplied, if any.",
+      "format": "uint64",
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "protocol_version",
+    "heartbeat_ms",
+    "rate_limit_per_minute",
+    "replay_window_ms",
+    "identity_required_for_detail"
+  ],
+  "title": "StreamHello",
+  "type": "object"
+}

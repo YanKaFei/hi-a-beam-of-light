@@ -1,0 +1,101 @@
+{
+  "cases": [
+    {
+      "completed_turns": 2,
+      "decision": "countable",
+      "detail": {
+        "family": "gpt",
+        "level": "E3"
+      },
+      "output_items": 5,
+      "raw": "gpt-6-sol"
+    },
+    {
+      "completed_turns": 0,
+      "decision": "observable",
+      "detail": {
+        "level": "E1",
+        "reason": "SessionCreatedButNoModelOutput"
+      },
+      "output_items": 0,
+      "raw": "gpt-6-sol"
+    },
+    {
+      "completed_turns": 5,
+      "decision": "observable",
+      "detail": {
+        "level": "E1",
+        "reason": "SessionCreatedButNoModelOutput"
+      },
+      "output_items": 0,
+      "raw": "gpt-6-sol"
+    },
+    {
+      "completed_turns": 0,
+      "decision": "countable",
+      "detail": {
+        "family": "gpt",
+        "level": "E3"
+      },
+      "output_items": 1,
+      "raw": "chatgpt-web/gpt-6-sol"
+    },
+    {
+      "completed_turns": 10,
+      "decision": "rejected",
+      "detail": {
+        "reason": "TaskLabelNotAModel"
+      },
+      "output_items": 50,
+      "raw": "codex-auto-review"
+    },
+    {
+      "completed_turns": 9,
+      "decision": "rejected",
+      "detail": {
+        "reason": "UnknownFamily"
+      },
+      "output_items": 9,
+      "raw": "mystery-model-zzz"
+    },
+    {
+      "completed_turns": 1,
+      "decision": "rejected",
+      "detail": {
+        "reason": "EmptyModel"
+      },
+      "output_items": 3,
+      "raw": ""
+    },
+    {
+      "completed_turns": 1,
+      "decision": "countable",
+      "detail": {
+        "family": "deepseek",
+        "level": "E3"
+      },
+      "output_items": 2,
+      "raw": "deepseek-r1"
+    }
+  ],
+  "note": "Two gates: attribution (registry) AND occurrence (model output items). completed_turns alone is not proof.",
+  "policy": {
+    "model_output_item_types": [
+      "agentMessage",
+      "reasoning",
+      "commandExecution",
+      "mcpToolCall",
+      "webSearch",
+      "fileChange",
+      "imageGeneration",
+      "collabAgentToolCall",
+      "subAgentActivity"
+    ],
+    "non_proof_item_types": [
+      "userMessage",
+      "imageView",
+      "sleep",
+      "contextCompaction"
+    ]
+  }
+}
