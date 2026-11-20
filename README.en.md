@@ -258,6 +258,14 @@ The GitHub topics carry these keywords, so search and watch will find it.
 
 ---
 
+## Sparks that heal
+
+![Sparks that heal](assets/readme/shared/sparks-heal.webp)
+
+Fire consumes; light leaves something behind. One light will not change the world, but it may make the next person willing to begin.
+
+---
+
 ## Contributing
 
 - New idea: open an issue and describe the moment you wish had been lit for you.

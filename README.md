@@ -258,6 +258,14 @@ cd services/api && node --test test/*.test.mjs
 
 ---
 
+## 星星之火，可以疗愈
+
+![星星之火，可以疗愈](assets/readme/shared/sparks-heal.webp)
+
+火会把东西烧完，光会把东西留下。一次点亮改变不了世界，但它可能让下一个人愿意开始。
+
+---
+
 ## 参与
 
 - 有新想法：开一个 issue，说清楚「你在什么场景下希望被点亮」。

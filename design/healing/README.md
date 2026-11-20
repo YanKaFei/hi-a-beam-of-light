@@ -121,6 +121,7 @@ design/healing/
   healing.js     四语言文案 / 光阶 / 二维码道具 / 取景
   render.mjs     headless Chrome 出图 → assets/readme/{zh,en,fr,ja}/*.png
   optimize.py    PNG → WebP（约 900 KB / 29 张）
+  calligraphy.py 朱砂底白字书法条幅「星星之火可以疗愈」→ shared/sparks-heal.webp
 ```
 
 ```bash
@@ -133,7 +134,24 @@ python3 optimize.py
 
 ---
 
-## 8. 与主仓库视觉系统的关系
+## 8. 书法条幅
+
+`calligraphy.py` 生成 README 结尾那张朱砂底白字条幅：
+
+- 行楷（Xingkai SC）逐字落笔，每字 ±1.5° 旋转、±7px 错落，不做机械对齐
+- 纸纹与飞白：alpha 乘以低频噪声，让笔画边缘像写在宣纸上，而不是矢量
+- 一枚白印「光」，旋转 -4°，压在右下；左下是一行小字签名「hi，一束光」
+- 1600×600，WebP 约 70 KB
+
+```bash
+python3 calligraphy.py
+```
+
+字体不在本机时，改 `FONT_CANDIDATES` 指向任意行楷 / 楷体文件即可。
+
+---
+
+## 9. 与主仓库视觉系统的关系
 
 `docs/visual-system-v2.md` 是深色水墨版：适合桌面悬浮光点与夜间场景，墨 ≥ 88%、红 ≤ 2%。
 本目录是**暖纸版**：面向白天、面向第一次打开的人、面向「被安慰」而不是「被震撼」。

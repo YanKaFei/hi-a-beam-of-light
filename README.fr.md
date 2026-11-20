@@ -258,6 +258,14 @@ Les topics GitHub portent ces mots-clés : la recherche et l’abonnement le tro
 
 ---
 
+## Des étincelles qui apaisent
+
+![Des étincelles qui apaisent](assets/readme/shared/sparks-heal.webp)
+
+Le feu consume ; la lumière laisse quelque chose derrière elle. Une seule lumière ne changera pas le monde, mais elle peut donner à la personne suivante l’envie de commencer.
+
+---
+
 ## Contribuer
 
 - Une idée : ouvrez une issue et racontez le moment où vous auriez aimé être éclairé.
