@@ -258,6 +258,8 @@ cd services/api && node --test test/*.test.mjs
 
 仓库的 GitHub topics 已包含以上关键词，方便搜索与订阅。
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 ---
 
 ## 参与

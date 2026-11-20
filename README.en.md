@@ -258,6 +258,8 @@ If you came from the DeepSeek community, this is where to find it:
 
 The GitHub topics carry these keywords, so search and watch will find it.
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 ---
 
 ## Contributing

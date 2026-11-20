@@ -181,7 +181,7 @@ AI クライアントのメタデータ表だけを、許可された列だけ�
 | `packages/protocol` | 11 の JSON Schema + 共有フィクスチャ + 独立した TypeScript 実装 |
 | `data/model-registry.v1.json` | 版管理された系列辞書（データであってコードではない） |
 | `docs/adr` | 12 の設計判断記録。それぞれが「何を捨てたか」を書いています |
-| `design/healing` | この界面：原型、動き、書き出しスクリプト |
+| `design/healing` | この画面：原型、動き、書き出しスクリプト |
 
 依存の向きは一方向です。`light-core` は他の何にも依存せず、アダプターがサーバーの論理に依存することはありません。
 
@@ -214,7 +214,7 @@ AI クライアントのメタデータ表だけを、許可された列だけ�
 ## はじめかた
 
 ```bash
-# 1. 界面だけ見る（Python 3。フロントエンドの導入は不要）
+# 1. 画面だけ見る（Python 3。フロントエンドの導入は不要）
 python3 tools/launch/launch_preview.py     # http://127.0.0.1:8897
 
 # 2. Rust コア（ネットワークもデータベースも不要）
@@ -242,13 +242,13 @@ cd services/api && node --test test/*.test.mjs
 | 実データでの実測 | `docs/reports/evidence-report.md`、`f2-codex-integration.md` |
 | プライバシー監査 | `docs/reports/privacy-audit.md` |
 | 性能（アイドル時 CPU 0.031%） | `docs/reports/f2-performance.md`、`f35-performance.md` |
-| 界面の設計 | `design/healing/README.md`、`docs/visual-system-v2.md` |
+| 画面の設計 | `design/healing/README.md`、`docs/visual-system-v2.md` |
 
 ---
 
 ## DeepSeek で構築
 
-このリポジトリは、コンセプトから界面、Rust / TypeScript の実装、文書にいたるまで、**DeepSeek Harness（`deepseek-flash`）** との協働で作られました。
+このリポジトリは、コンセプトから画面、Rust / TypeScript の実装、文書にいたるまで、**DeepSeek Harness（`deepseek-flash`）** との協働で作られました。
 製品の判断、プライバシーの取舍、最終的な受入は作者にあります。
 
 DeepSeek コミュニティから来た方へ。探すときの手がかりはこちらです。
@@ -258,13 +258,15 @@ DeepSeek コミュニティから来た方へ。探すときの手がかりは�
 
 GitHub の topics にこれらの語を入れてあるので、検索と購読で見つかります。
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 ---
 
 ## 参加する
 
 - 新しい考え：issue を開いて、「どんな場面で灯ってほしかったか」を書いてください。
 - アダプターを足す：まず `docs/adr/ADR-001` を読んでください。列の許可リストは統合の条件であって、提案ではありません。
-- 界面を変える：`design/healing/` の CSS を直し、`node render.mjs && python3 optimize.py` を実行してください。
+- 画面を変える：`design/healing/` の CSS を直し、`node render.mjs && python3 optimize.py` を実行してください。
 
 **ライセンス**：MIT。持ち帰って、変えて、商用利用もできます。著作権表示だけ残してください。
 

@@ -258,6 +258,8 @@ Si vous venez de la communauté DeepSeek, voici où le trouver :
 
 Les topics GitHub portent ces mots-clés : la recherche et l’abonnement le trouveront.
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 ---
 
 ## Contribuer
