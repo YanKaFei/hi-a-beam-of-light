@@ -112,6 +112,8 @@ Pas de tableau de bord, pas de barre de progression, pas de chiffres transformé
   </tr>
 </table>
 
+Les images ci-dessus sont des rendus de la maquette dans [`design/healing`](design/healing/), une série par langue ; la version web d’acceptation utilise encore l’interface précédente. Les deux partagent les mêmes niveaux de lumière et les mêmes textes.
+
 Trois règles strictes :
 
 - **La lumière est calme.** Quatre verbes seulement : suinter, respirer, s’étendre, luire. Jamais plus de trois éléments en mouvement sur un écran.

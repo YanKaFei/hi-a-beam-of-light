@@ -112,6 +112,8 @@ No dashboard, no progress bar, no numbers turned into medals.
   </tr>
 </table>
 
+The images above are renders of the interface design in [`design/healing`](design/healing/), one set per language; the browser acceptance build still uses the earlier interface. Both share the same light levels and copy.
+
 Three hard rules:
 
 - **The light is quiet.** Only four verbs: seep, breathe, spread, glow. Never more than three moving elements on a screen.
