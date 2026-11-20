@@ -2,12 +2,6 @@
   <img src="assets/readme/zh/hero.webp" alt="一束光：把用过的 AI，点成一束可以递出去的光" width="100%">
 </p>
 
-<h1 align="center">一束光</h1>
-
-<p align="center">
-  <em>把你用过的 AI，点成一束可以递出去的光。</em>
-</p>
-
 <p align="center">
   <b>中文</b> ·
   <a href="README.en.md">English</a> ·

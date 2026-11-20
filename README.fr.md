@@ -2,12 +2,6 @@
   <img src="assets/readme/fr/hero.webp" alt="Première Lumière : transformer l’IA utilisée en lumière à transmettre" width="100%">
 </p>
 
-<h1 align="center">Première Lumière</h1>
-
-<p align="center">
-  <em>Transformer l’IA que l’on a utilisée en lumière que l’on peut transmettre.</em>
-</p>
-
 <p align="center">
   <a href="README.md">中文</a> ·
   <a href="README.en.md">English</a> ·

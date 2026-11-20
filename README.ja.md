@@ -2,12 +2,6 @@
   <img src="assets/readme/ja/hero.webp" alt="一筋の光：使ったAIを、手渡せる光に" width="100%">
 </p>
 
-<h1 align="center">一筋の光</h1>
-
-<p align="center">
-  <em>使ったAIを、手渡せる光に。</em>
-</p>
-
 <p align="center">
   <a href="README.md">中文</a> ·
   <a href="README.en.md">English</a> ·

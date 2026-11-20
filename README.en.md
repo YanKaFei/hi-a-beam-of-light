@@ -2,12 +2,6 @@
   <img src="assets/readme/en/hero.webp" alt="First Light: turn the AI you have used into light you can hand on" width="100%">
 </p>
 
-<h1 align="center">First Light</h1>
-
-<p align="center">
-  <em>Turn the AI you have used into light you can hand on.</em>
-</p>
-
 <p align="center">
   <a href="README.md">中文</a> ·
   <b>English</b> ·
