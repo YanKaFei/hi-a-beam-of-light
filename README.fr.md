@@ -271,11 +271,11 @@ Les topics GitHub portent ces mots-clés : la recherche et l’abonnement le tro
 
 ---
 
-## Des étincelles qui apaisent
+## Une étincelle suffit à embraser la plaine
 
-![Des étincelles qui apaisent](assets/readme/shared/sparks-heal.webp)
+![Une étincelle suffit à embraser la plaine](assets/readme/shared/sparks-spread.webp)
 
-Le feu consume ; la lumière laisse quelque chose derrière elle. Une seule lumière ne changera pas le monde, mais elle peut donner à la personne suivante l’envie de commencer.
+Ce qui embrase la plaine n’est pas le feu, c’est la lumière. Une personne apprend à utiliser l’IA, puis l’enseigne à la suivante — une seule lumière ne changera pas le monde, mais elle peut donner à la personne suivante l’envie de commencer.
 
 ---
 

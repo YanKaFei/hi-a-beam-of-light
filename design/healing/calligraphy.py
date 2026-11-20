@@ -7,14 +7,18 @@
 """
 from __future__ import annotations
 
-import math
+import sys
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE.parents[1] / "assets" / "readme" / "shared" / "sparks-heal.webp"
+SHARED = HERE.parents[1] / "assets" / "readme" / "shared"
+
+# 用法：python3 calligraphy.py "星星之火可以燎原" shared/sparks-spread.webp
+TEXT = sys.argv[1] if len(sys.argv) > 1 else "星星之火可以燎原"
+OUT = SHARED / (sys.argv[2] if len(sys.argv) > 2 else "sparks-spread.webp")
 
 FONT_CANDIDATES = [
     "/System/Library/AssetsV2/com_apple_MobileAsset_Font8/13b8ce423f920875b28b551f9406bf1014e0a656.asset/AssetData/Xingkai.ttc",
@@ -22,7 +26,6 @@ FONT_CANDIDATES = [
     "/Library/Fonts/Xingkai.ttc",
 ]
 
-TEXT = "星星之火可以疗愈"
 W, H = 1600, 600
 CREAM = (247, 241, 229)
 RED_TOP = (172, 52, 41)

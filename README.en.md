@@ -271,11 +271,11 @@ The GitHub topics carry these keywords, so search and watch will find it.
 
 ---
 
-## Sparks that heal
+## A single spark can start a prairie fire
 
-![Sparks that heal](assets/readme/shared/sparks-heal.webp)
+![A single spark can start a prairie fire](assets/readme/shared/sparks-spread.webp)
 
-Fire consumes; light leaves something behind. One light will not change the world, but it may make the next person willing to begin.
+What sets the plain alight is not the fire; it is the light. One person learns to use AI, then teaches the next — one light will not change the world, but it can make the next person willing to begin.
 
 ---
 

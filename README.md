@@ -271,11 +271,11 @@ cd services/api && node --test test/*.test.mjs
 
 ---
 
-## 星星之火，可以疗愈
+## 星星之火，可以燎原
 
-![星星之火，可以疗愈](assets/readme/shared/sparks-heal.webp)
+![星星之火，可以燎原](assets/readme/shared/sparks-spread.webp)
 
-火会把东西烧完，光会把东西留下。一次点亮改变不了世界，但它可能让下一个人愿意开始。
+燎原的不是火，是光。一个人学会用 AI，再去教下一个人——一次点亮改变不了世界，却能让下一个人愿意开始。
 
 ---
 
