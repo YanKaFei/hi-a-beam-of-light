@@ -27,12 +27,14 @@
 
 ## What this is
 
-**First Light** is a concept system for an “AI capability transmission network” — and a working implementation of one.
+**First Light** is a system built around one question: **how does AI get passed on?** It is also a working implementation.
+
+It believes one thing: **AI does not spread by itself. Someone has to teach it.**
 
 It does three things:
 
 1. **Light up.** On your own computer it reads only the metadata left by AI clients — model names, whether a session actually produced anything — and turns “how many kinds of AI have you really used” into a single light. More verified families, deeper light.
-2. **Pass it on.** Hand that light to another person. Not an account, not a quota, not a referral: an invitation that says “I'll start with you.”
+2. **Pass it on.** Hand that light to another person. Not an account, not a quota, not a referral: sitting down with someone who has not started, through their first real use of an AI tool.
 3. **Echo.** Only when the other person actually begins to use it does a light appear on your side. Being helped becomes visible for the first time.
 
 It does not rank people, score them, or compare their worth. **Light stands for capability, never for a person's value.**
@@ -43,13 +45,24 @@ It does not rank people, score them, or compare their worth. **Light stands for 
 
 Everything today measures who uses more. Leaderboards brighten the people who already know, and dim the people who are just starting.
 
-First Light uses measurement the other way round: **not how well you used it, only that you began; not who is ahead, only who passes it on.**
+First Light uses measurement the other way round: **not how well you used it, only that you began; not who is ahead, only one thing — teaching someone else.**
 
 - You have used GPT, and a local Ollama model — two layers of light.
 - You pass the light to a friend; your own light does not lose a single layer.
 - The friend really begins; one echo appears here.
 
-“One person starts, more people happen.” That is the only goal of this system.
+“Everyone should get to use AI; one person starts, more people happen.” That is the only goal of this system.
+
+---
+
+## How the spread happens
+
+Not user acquisition. Not an account. Not a tutorial link. One person teaching one person.
+
+1. **Someone begins.** You start using AI; a light comes on, on your desktop.
+2. **They teach one other person.** Not by handing over a login, but by sitting down and getting through the first real use together.
+3. **That person uses it for real.** Their light is lit by their own evidence — scanning a code does not light it, downloading does not light it, using it does.
+4. **They teach the next person.** One to two, two to four. A prairie fire is not a bigger flame; it is every spark being able to light the next one.
 
 ---
 

@@ -27,12 +27,14 @@
 
 ## Qu’est-ce que c’est
 
-**Première Lumière** est un système-concept de « réseau de transmission de capacités IA » — et une implémentation qui fonctionne.
+**Première Lumière** est un système construit autour d’une seule question : **comment l’IA se transmet-elle ?** C’est aussi une implémentation qui fonctionne.
+
+Il croit une chose : **l’IA ne se répand pas toute seule. Quelqu’un doit l’enseigner.**
 
 Il fait trois choses :
 
 1. **S’allumer.** Sur votre propre ordinateur, il ne lit que les métadonnées laissées par les clients d’IA — noms de modèles, existence d’une production réelle dans une session — et transforme « combien de sortes d’IA avez-vous vraiment utilisées » en une seule lumière. Plus les familles vérifiées sont nombreuses, plus la lumière est profonde.
-2. **Transmettre.** Passer cette lumière à une autre personne. Ni un compte, ni un quota, ni un parrainage : une invitation qui dit « je commence avec toi ».
+2. **Transmettre.** Passer cette lumière à une autre personne. Ni un compte, ni un quota, ni un parrainage : s’asseoir à côté de quelqu’un qui n’a pas commencé, et traverser ensemble son premier vrai usage d’un outil d’IA.
 3. **L’écho.** C’est seulement quand l’autre commence réellement qu’une lumière apparaît chez vous. Être aidé devient visible pour la première fois.
 
 Il ne classe personne, ne note personne, ne compare pas la valeur des gens. **La lumière représente une capacité, jamais la valeur d’une personne.**
@@ -43,13 +45,24 @@ Il ne classe personne, ne note personne, ne compare pas la valeur des gens. **La
 
 Tout mesure aujourd’hui qui utilise le plus. Les classements éclairent ceux qui savent déjà et assombrissent ceux qui commencent.
 
-Première Lumière retourne la mesure : **pas à quel point vous avez bien utilisé, seulement que vous avez commencé ; pas qui est en tête, seulement qui transmet.**
+Première Lumière retourne la mesure : **pas à quel point vous avez bien utilisé, seulement que vous avez commencé ; pas qui est en tête, une seule chose — enseigner à quelqu’un d’autre.**
 
 - Vous avez utilisé GPT et un modèle Ollama local : deux couches de lumière.
 - Vous transmettez la lumière à un ami ; la vôtre ne perd pas une seule couche.
 - L’ami commence vraiment ; un écho apparaît ici.
 
-« Une personne commence, d’autres adviennent. » C’est le seul but de ce système.
+« Tout le monde doit pouvoir utiliser l’IA ; une personne commence, d’autres adviennent. » C’est le seul but de ce système.
+
+---
+
+## Comment la diffusion se produit
+
+Pas d’acquisition d’utilisateurs. Pas de compte. Pas de lien vers un tutoriel. Une personne qui en enseigne une autre.
+
+1. **Quelqu’un commence.** Vous utilisez l’IA ; une lumière s’allume sur votre bureau.
+2. **Cette personne en enseigne une autre.** Pas en donnant un identifiant, mais en s’asseyant à côté d’elle pour traverser ensemble le premier vrai usage.
+3. **L’autre s’en sert vraiment.** Sa lumière s’allume par ses propres preuves — scanner un code ne l’allume pas, télécharger ne l’allume pas, utiliser l’allume.
+4. **Elle enseigne à la suivante.** Une transmet à deux, deux à quatre. Un incendie de plaine n’est pas une flamme plus grande : c’est chaque étincelle capable d’allumer la suivante.
 
 ---
 
